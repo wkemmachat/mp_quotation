@@ -3,7 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Blank Page</title>
+  <title>
+    @yield('title')
+  </title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -18,6 +20,10 @@
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="{{asset('adminlte/dist/css/skins/_all-skins.min.css')}}">
 
+  <link rel="stylesheet" href="{{ asset('toastr.min.css') }}" type="text/css" />
+
+  @yield('js')
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesnt work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -27,6 +33,32 @@
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+
+
+    <!-- jQuery 3 -->
+    <script src="{{asset('adminlte/bower_components/jquery/dist/jquery.min.js')}}"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="{{asset('adminlte/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+    <!-- SlimScroll -->
+    <script src="{{asset('adminlte/bower_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
+    <!-- FastClick -->
+    <script src="{{asset('adminlte/bower_components/fastclick/lib/fastclick.js')}}"></script>
+    <!-- AdminLTE App -->
+    <script src="{{asset('adminlte/dist/js/adminlte.min.js')}}"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="{{asset('adminlte/dist/js/demo.js')}}"></script>
+    <script>
+    $(document).ready(function () {
+        $('.sidebar-menu').tree()
+    })
+    </script>
+
+    <script src="{{asset('toastr.min.js')}}"></script>
+
+    @yield('js')
+
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <!-- Site wrapper -->
@@ -57,22 +89,7 @@
 </div>
 <!-- ./wrapper -->
 
-<!-- jQuery 3 -->
-<script src="{{asset('adminlte/bower_components/jquery/dist/jquery.min.js')}}"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="{{asset('adminlte/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
-<!-- SlimScroll -->
-<script src="{{asset('adminlte/bower_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
-<!-- FastClick -->
-<script src="{{asset('adminlte/bower_components/fastclick/lib/fastclick.js')}}"></script>
-<!-- AdminLTE App -->
-<script src="{{asset('adminlte/dist/js/adminlte.min.js')}}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="{{asset('adminlte/dist/js/demo.js')}}"></script>
-<script>
-  $(document).ready(function () {
-    $('.sidebar-menu').tree()
-  })
-</script>
+
+
 </body>
 </html>

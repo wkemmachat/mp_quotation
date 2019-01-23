@@ -16,6 +16,10 @@ Route::get('/', function () {
 });
 
 Route::get('/test_blank', function () {
+
+    $message = "Please verify your email to go to the dashboard";
+    Toastr::success($message, $title = "Email Verification", $options = []);
+
     return view('test_blank');
 });
 

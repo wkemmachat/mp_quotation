@@ -1,9 +1,16 @@
 @extends('layouts.back.blank')
 
 
+@section('title')
+    Test title
+@endsection
+
 @section('content')
 
 <div class="content-wrapper">
+
+    {!! Toastr::render() !!}
+
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
@@ -49,3 +56,12 @@
   </div>
 
 @endsection
+
+
+@section('css')
+@endsection
+
+@section('js')
+@endsection
+
+
