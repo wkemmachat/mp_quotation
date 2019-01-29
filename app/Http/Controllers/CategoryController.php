@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use \App\Category;
+use Gate;
 
 class CategoryController extends Controller
 {
@@ -13,18 +15,14 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        if(!Gate::allows('isRoot')){
+            abort(404,"Sorry, You can do this actions");
+        }
+
+        $categories = Category::all();
+        return view('category.index',compact('categories'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -34,7 +32,10 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        Category::create($request->all());
+
+        return back();
     }
 
     /**
@@ -43,10 +44,10 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+    // public function show($id)
+    // {
+    //     //
+    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -54,9 +55,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        //
+        return view('category.edit',  compact('category'));
     }
 
     /**
@@ -66,9 +67,14 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+
+        $category = Category::findOrFail($request->category_id);
+
+        $category->update($request->all());
+
+        return back();
     }
 
     /**
@@ -77,8 +83,13 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+
+        $category = Category::findOrFail($request->category_id);
+        $category->delete();
+
+        return back();
+
     }
 }

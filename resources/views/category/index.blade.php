@@ -85,7 +85,15 @@
       <form action="{{route('category.store')}}" method="post">
       		{{csrf_field()}}
 	      <div class="modal-body">
-				@include('category.form')
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" name="title" id="title">
+            </div>
+
+            <div class="form-group">
+                <label for="des">Description</label>
+                <textarea name="description" id="des" cols="20" rows="5" id='des' class="form-control"></textarea>
+            </div>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -108,15 +116,15 @@
       		{{method_field('patch')}}
       		{{csrf_field()}}
 	      <div class="modal-body">
-	      		<input type="hidden" name="category_id" id="cat_id" value="">
+	      		<input type="hidden" name="category_id" id="edit_cat_id" value="">
                 <div class="form-group">
 		        	<label for="title">Title</label>
-		        	<input type="text" class="form-control" name="title" id="title">
+		        	<input type="text" class="form-control" name="title" id="edit_title" value="">
 	        	</div>
 
 	        	<div class="form-group">
 	        		<label for="des">Description</label>
-	        		<textarea name="description" id="des" cols="20" rows="5" id='des' class="form-control"></textarea>
+	        		<textarea name="description" id="edit_des" cols="20" rows="5" value="" class="form-control"></textarea>
 	        	</div>
 	      </div>
 	      <div class="modal-footer">
@@ -143,7 +151,7 @@
 				<p class="text-center">
 					Are you sure you want to delete this?
 				</p>
-	      		<input type="hidden" name="category_id" id="cat_id" value="">
+	      		<input type="hidden" name="category_id" id="del_cat_id" value="">
 
 	      </div>
 	      <div class="modal-footer">
@@ -160,13 +168,7 @@
     <!-- /.content -->
   </div>
 
-@endsection
 
-
-@section('css')
-@endsection
-
-@section('js')
 
 <script>
 
@@ -179,10 +181,10 @@
         var cat_id = button.data('catid')
         var modal = $(this)
 
-        modal.find('.modal-body #title').val(title);
-        modal.find('.modal-body #des').val(description);
-        modal.find('.modal-body #cat_id').val(cat_id);
-  })
+        modal.find('.modal-body #edit_title').val(title);
+        modal.find('.modal-body #edit_des').val(description);
+        modal.find('.modal-body #edit_cat_id').val(cat_id);
+    })
 
 
     $('#delete').on('show.bs.modal', function (event) {
@@ -192,12 +194,14 @@
         var cat_id = button.data('catid')
         var modal = $(this)
 
-        modal.find('.modal-body #cat_id').val(cat_id);
-  })
+        modal.find('.modal-body #del_cat_id').val(cat_id);
+    })
 
 
   </script>
 
-@endsection
+  @endsection
+
+
 
 

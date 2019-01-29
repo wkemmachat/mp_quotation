@@ -25,5 +25,19 @@ Route::get('/test_blank', function () {
 
 Auth::routes();
 
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+
+// Route::resource('category','CategoryController');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// Category
+Route::get('/category', 'CategoryController@index')->name('category');
+Route::post('/category', 'CategoryController@store')->name('category.store');
+Route::get('/category/edit/{id}','CategoryController@edit');
+Route::match(['put', 'patch'], '/category/update/{id}','CategoryController@update')->name('category.update');
+Route::delete('/category/{id}', 'CategoryController@destroy')->name('category.destroy');
+
+// User
+Route::get('/addUser', 'UserController@addUser')->name('addUser');
+Route::get('/ListUser', 'UserController@index')->name('listUser');
