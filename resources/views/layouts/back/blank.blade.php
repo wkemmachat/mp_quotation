@@ -22,7 +22,7 @@
 
   <link rel="stylesheet" href="{{ asset('toastr.min.css') }}" type="text/css" />
 
-  @yield('js')
+  @yield('css')
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesnt work if you view the page via file:// -->
