@@ -22,6 +22,8 @@
 
   <link rel="stylesheet" href="{{ asset('toastr.min.css') }}" type="text/css" />
 
+  <!-- Select2 -->
+  <link rel="stylesheet" href="{{asset('adminlte/bower_components/select2/dist/css/select2.min.css')}}">
   @yield('css')
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -48,9 +50,11 @@
     <script src="{{asset('adminlte/dist/js/adminlte.min.js')}}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{asset('adminlte/dist/js/demo.js')}}"></script>
+    <script src="{{asset('adminlte/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
     <script>
     $(document).ready(function () {
         $('.sidebar-menu').tree()
+        $('.select2').select2()
     })
     </script>
 

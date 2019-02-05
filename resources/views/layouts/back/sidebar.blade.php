@@ -25,7 +25,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-        <li class="treeview">
+        <li class="treeview {{ Request::is('user*') ? 'active' : '' }}">
             <a href="#">
               <i class="fa fa-users"></i> <span>Manage User</span>
               <span class="pull-right-container">
@@ -33,10 +33,12 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="{{ route('addUser') }}"><i class="fa fa-circle-o"></i> Add user</a></li>
-              <li><a href="{{ route('listUser') }}"><i class="fa fa-circle-o"></i> List user</a></li>
+                <li class="{{ Request::is('user/manageUser*') ? 'active' : '' }}"><a href="{{ route('user') }}"><i class="fa fa-circle-o"></i>  User</a></li>
+                <li class="{{ Request::is('user/role*') ? 'active' : '' }}"><a href="{{ route('role') }}"><i class="fa fa-circle-o"></i>  Role</a></li>
+                <li><a href="{{ route('role_user') }}"><i class="fa fa-circle-o"></i>  Role_User</a></li>
             </ul>
         </li>
+
         <li>
             <a href="{{ route('category') }}">
               <i class="fa fa-bars"></i> <span>Category</span>

@@ -38,6 +38,22 @@ Route::get('/category/edit/{id}','CategoryController@edit');
 Route::match(['put', 'patch'], '/category/update/{id}','CategoryController@update')->name('category.update');
 Route::delete('/category/{id}', 'CategoryController@destroy')->name('category.destroy');
 
+// Role
+Route::get('user/role', 'RoleController@index')->name('role');
+Route::post('user/role', 'RoleController@store')->name('role.store');
+Route::match(['put', 'patch'], 'user/role/update/{id}','RoleController@update')->name('role.update');
+Route::delete('user/role/{id}', 'RoleController@destroy')->name('role.destroy');
+
+// Role_User
+Route::get('/role_user', 'RoleController@role_user_index')->name('role_user');
+Route::post('/role_user', 'RoleController@role_user_store')->name('role_user.store');
+Route::get('/role_user/edit/{id}','RoleController@role_user_edit')->name('role_user.edit');
+Route::match(['put', 'patch'], '/role_user/update/{id}','RoleController@role_user_update')->name('role_user.update');
+
 // User
-Route::get('/addUser', 'UserController@addUser')->name('addUser');
-Route::get('/ListUser', 'UserController@index')->name('listUser');
+Route::post('/user/manageUser', 'UserController@store')->name('user.store');
+Route::get('/user/manageUser', 'UserController@index')->name('user');
+Route::get('/user/manageUser/edit/{id}','UserController@edit')->name('user.edit');
+Route::match(['put', 'patch'], '/user/manageUser/update/{id}','UserController@update')->name('user.update');
+Route::delete('/user/manageUser/{id}', 'UserController@destroy')->name('user.destroy');
+Route::get('/user/manageUser/changeStatus/{id}','UserController@changeStatus')->name('user.changeStatus');
