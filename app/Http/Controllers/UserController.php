@@ -11,13 +11,12 @@ class UserController extends Controller
 {
     public function __construct()
     {
-
-
         $this->middleware('auth');
     }
 
     public function index()
     {
+
 
         if(!Gate::allows('isRoot')){
 
@@ -27,6 +26,7 @@ class UserController extends Controller
             return back();
             // abort(404,"Sorry, You can do this actions");
         }
+
 
         $users = User::all();
         return view('user.index',compact('users'));
@@ -114,6 +114,8 @@ class UserController extends Controller
 
             $user = new User();
             $user->name = $request['name'];
+            $user->email = "";
+            $user->password = "";
             $user->user_type = $request['user_type'];
             $user->active = 1;
             $user->save();

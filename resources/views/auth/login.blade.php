@@ -72,6 +72,7 @@
     <p class="login-box-msg">Sign in to start your session</p>
 
     <form method="POST" action="{{ route('login') }}">
+    {{--  <form method="POST" action="{{ route('login_kem') }}">  --}}
       @csrf
       <div class="form-group has-feedback">
         <input type="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" autofocus placeholder="Email">
@@ -121,7 +122,7 @@
     <!-- /.social-auth-links -->
 
     <a href="#">I forgot my password</a><br>
-    <a href="{{ route('register') }}" class="text-center">Register a new membership</a>
+    {{--  <a href="{{ route('register') }}" class="text-center">Register a new membership</a>  --}}
 
   </div>
   <!-- /.login-box-body -->

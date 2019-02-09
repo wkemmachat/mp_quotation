@@ -25,11 +25,11 @@
           Manage Role to User
           <small>Add/Edit/List Role To User</small>
         </h1>
-        <ol class="breadcrumb">
+        {{--  <ol class="breadcrumb">
           <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
           <li><a href="#">Examples</a></li>
           <li class="active">Blank page</li>
-        </ol>
+        </ol>  --}}
     </section>
 
     <!-- Main content -->
@@ -50,12 +50,13 @@
                                             @csrf
                                             <div class="form-group has-feedback">
                                                 <label>Name</label>
-                                                <select name="user_id" class="form-control select2" placeholder="User" required>
+                                                &nbsp;&nbsp; <font color='red'><strong>{{ $userSelected->name }} </strong></font>
+                                                {{--  <select name="user_id" class="form-control select2" placeholder="User" required>
                                                     <option value="">Please Select User</option>
                                                     @foreach ($users as $user)
                                                         <option value="{{ $user->id }}" {{ ($user->id == $userSelected->id)?"selected":"" }}>{{ $user->name }}</option>
                                                     @endforeach
-                                                </select>
+                                                </select>  --}}
                                             </div>
 
                                             <div class="form-group">

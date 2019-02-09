@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use App\Role;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -39,6 +40,10 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('isRoot', function($user){
             return $user->user_type == 'root';
+        });
+
+        Gate::define('user-has-role', function ($user, Role $role) {
+            return $user->roles->contains($role->id)?true:false;
         });
     }
 }

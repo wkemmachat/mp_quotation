@@ -25,11 +25,11 @@
           Manage User
           <small>Add/Edit/List Users</small>
         </h1>
-        <ol class="breadcrumb">
+        {{--  <ol class="breadcrumb">
           <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
           <li><a href="#">Examples</a></li>
           <li class="active">Blank page</li>
-        </ol>
+        </ol>  --}}
     </section>
 
     <!-- Main content -->
@@ -127,6 +127,9 @@
                     </div>
             </div>
         </div>
+
+
+
         <div class="row">
             <div class="col-md-12">
                 <div class="box box-warning">

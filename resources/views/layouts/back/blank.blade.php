@@ -14,6 +14,8 @@
   <link rel="stylesheet" href="{{asset('adminlte/bower_components/font-awesome/css/font-awesome.min.css')}}">
   <!-- Ionicons -->
   <link rel="stylesheet" href="{{asset('adminlte/bower_components/Ionicons/css/ionicons.min.css')}}">
+  <!-- bootstrap datepicker -->
+  <link rel="stylesheet" href="{{asset('adminlte/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('adminlte/dist/css/AdminLTE.min.css')}}">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -48,13 +50,26 @@
     <script src="{{asset('adminlte/bower_components/fastclick/lib/fastclick.js')}}"></script>
     <!-- AdminLTE App -->
     <script src="{{asset('adminlte/dist/js/adminlte.min.js')}}"></script>
+    <!-- bootstrap datepicker -->
+    <script src="{{asset('adminlte/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{asset('adminlte/dist/js/demo.js')}}"></script>
     <script src="{{asset('adminlte/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
+    <!-- InputMask -->
+    <script src="{{asset('adminlte/plugins/input-mask/jquery.inputmask.js')}}"></script>
+    <script src="{{asset('adminlte/plugins/input-mask/jquery.inputmask.date.extensions.js')}}"></script>
+    <script src="{{asset('adminlte/plugins/input-mask/jquery.inputmask.extensions.js')}}"></script>
     <script>
     $(document).ready(function () {
         $('.sidebar-menu').tree()
         $('.select2').select2()
+
+        $('.datepicker').datepicker({
+            format: 'dd-mm-yyyy',
+            autoclose: true
+        })
+
+        $('[data-mask]').inputmask()
     })
     </script>
 
@@ -64,7 +79,7 @@
 
 
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
 <!-- Site wrapper -->
 <div class="wrapper">
 

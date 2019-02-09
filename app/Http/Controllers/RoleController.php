@@ -10,6 +10,12 @@ use Kamaln7\Toastr\Facades\Toastr;
 
 class RoleController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -75,7 +81,20 @@ class RoleController extends Controller
 
     public function role_user_update(Request $request, $id)
     {
-        return $request->all();
+        // return $request->all();
+
+        $user       = User::find($id);
+
+        $roleArray  = Role::find($request['role_id']);
+        $user->roles()->sync($roleArray);
+
+        $message = "Successfully add role to user";
+        Toastr::success($message, $title = "Successfully Action", $options = []);
+
+        $users = User::all();
+        $roles = Role::all();
+
+        return view('role_user.index',compact('roles','users'));
     }
 
     /**

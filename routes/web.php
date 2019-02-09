@@ -45,10 +45,10 @@ Route::match(['put', 'patch'], 'user/role/update/{id}','RoleController@update')-
 Route::delete('user/role/{id}', 'RoleController@destroy')->name('role.destroy');
 
 // Role_User
-Route::get('/role_user', 'RoleController@role_user_index')->name('role_user');
-Route::post('/role_user', 'RoleController@role_user_store')->name('role_user.store');
-Route::get('/role_user/edit/{id}','RoleController@role_user_edit')->name('role_user.edit');
-Route::match(['put', 'patch'], '/role_user/update/{id}','RoleController@role_user_update')->name('role_user.update');
+Route::get('user/manageRole_user', 'RoleController@role_user_index')->name('role_user');
+Route::post('user/manageRole_user', 'RoleController@role_user_store')->name('role_user.store');
+Route::get('user/manageRole_user/edit/{id}','RoleController@role_user_edit')->name('role_user.edit');
+Route::match(['put', 'patch'], 'user/manageRole_user/update/{id}','RoleController@role_user_update')->name('role_user.update');
 
 // User
 Route::post('/user/manageUser', 'UserController@store')->name('user.store');
@@ -57,3 +57,37 @@ Route::get('/user/manageUser/edit/{id}','UserController@edit')->name('user.edit'
 Route::match(['put', 'patch'], '/user/manageUser/update/{id}','UserController@update')->name('user.update');
 Route::delete('/user/manageUser/{id}', 'UserController@destroy')->name('user.destroy');
 Route::get('/user/manageUser/changeStatus/{id}','UserController@changeStatus')->name('user.changeStatus');
+
+// KPI
+Route::get('/kpi_output/{id}','KpiOutputController@index')->name('kpi_output');
+Route::post('/kpi_output/{id}','KpiOutputController@store')->name('kpi_output.store');
+Route::delete('/kpi_output/{id}','KpiOutputController@destroy')->name('kpi_output.delete');
+
+// Export
+Route::post('/exportKPI', 'KpiOutputController@exportKPI')->name('kpi_output.exportKPI');
+
+// KemLogin
+Route::post('/login_kem', 'KemLoginController@login')->name('login_kem');
+
+
+/*
+// qc
+Route::get('/qc', 'QcController@index')->name('qc');
+Route::post('/qc', 'QcController@store')->name('qc.store');
+
+// production
+Route::get('/production', 'ProductionController@index')->name('production');
+Route::post('/production', 'ProductionController@store')->name('production.store');
+
+// store
+Route::get('/store', 'StoreController@index')->name('store');
+Route::post('/store', 'StoreController@store')->name('store.store');
+
+// planning
+Route::get('/planning', 'PlanningController@index')->name('planning');
+Route::post('/planning', 'PlanningController@store')->name('planning.store');
+
+// logistic
+Route::get('/logistic', 'LogisticController@index')->name('logistic');
+Route::post('/logistic', 'LogisticController@store')->name('logistic.store');
+*/

@@ -1,4 +1,4 @@
-<aside class="main-sidebar">
+<aside class="main-sidebar ">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
       <!-- Sidebar user panel -->
@@ -7,7 +7,7 @@
           <img src="{{asset('adminlte/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>{{ Auth::user()->name }}</p>
+          <p>{{ Auth::user()->name }} </p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -25,6 +25,17 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
+
+        <li class="{{ Request::is('dashboard*') ? 'active' : '' }}">
+            <a href="{{ route('dashboard') }}">
+              <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+              {{--  <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>  --}}
+            </a>
+        </li>
+
+        @can('isRoot')
         <li class="treeview {{ Request::is('user*') ? 'active' : '' }}">
             <a href="#">
               <i class="fa fa-users"></i> <span>Manage User</span>
@@ -35,15 +46,106 @@
             <ul class="treeview-menu">
                 <li class="{{ Request::is('user/manageUser*') ? 'active' : '' }}"><a href="{{ route('user') }}"><i class="fa fa-circle-o"></i>  User</a></li>
                 <li class="{{ Request::is('user/role*') ? 'active' : '' }}"><a href="{{ route('role') }}"><i class="fa fa-circle-o"></i>  Role</a></li>
-                <li><a href="{{ route('role_user') }}"><i class="fa fa-circle-o"></i>  Role_User</a></li>
+                <li class="{{ Request::is('user/manageRole_user*') ? 'active' : '' }}"><a href="{{ route('role_user') }}"><i class="fa fa-circle-o"></i>  Role_User</a></li>
             </ul>
         </li>
+        @endcan
 
-        <li>
+        {{--  <li class="{{ Request::is('category*') ? 'active' : '' }}">
             <a href="{{ route('category') }}">
               <i class="fa fa-bars"></i> <span>Category</span>
             </a>
+        </li>  --}}
+
+        {{--  {{ ($userSelected->roles->contains($role->id))? "checked" : ""  }}
+        @if( Auth::user()->roles->contains($role->id) )  --}}
+
+        <?php
+            $canShow = false;
+            foreach(Auth::user()->roles as $role){
+                if(strcasecmp($role->title ,'qc')==0){
+                    $canShow = true;
+                    break;
+                }
+            }
+        ?>
+        @if($canShow)
+        <li class="{{ Request::is('kpi_output/qc*') ? 'active' : '' }}">
+            <a href="{{ route('kpi_output','qc') }}">
+              <i class="fa fa-delicious"></i> <span>QC</span>
+            </a>
         </li>
+        @endif
+
+        <?php
+            $canShow = false;
+            foreach(Auth::user()->roles as $role){
+                if(strcasecmp($role->title ,'production')==0){
+                    $canShow = true;
+                    break;
+                }
+            }
+        ?>
+        @if($canShow)
+        <li class="{{ Request::is('kpi_output/production*') ? 'active' : '' }}">
+            <a href="{{ route('kpi_output','production') }}">
+              <i class="fa fa-cubes"></i> <span>Production</span>
+            </a>
+        </li>
+        @endif
+
+        <?php
+        $canShow = false;
+        foreach(Auth::user()->roles as $role){
+            if(strcasecmp($role->title ,'logistic')==0){
+                $canShow = true;
+                break;
+            }
+        }
+        ?>
+        @if($canShow)
+        <li class="{{ Request::is('kpi_output/logistic*') ? 'active' : '' }}">
+            <a href="{{ route('kpi_output','logistic') }}">
+              <i class="fa fa-rocket"></i> <span>Logistic</span>
+            </a>
+        </li>
+        @endif
+
+        <?php
+        $canShow = false;
+        foreach(Auth::user()->roles as $role){
+            if(strcasecmp($role->title ,'store')==0){
+                $canShow = true;
+                break;
+            }
+        }
+        ?>
+        @if($canShow)
+        <li class="{{ Request::is('kpi_output/store*') ? 'active' : '' }}">
+            <a href="{{ route('kpi_output','store') }}">
+              <i class="fa fa-suitcase"></i> <span>Store</span>
+            </a>
+        </li>
+        @endif
+
+        <?php
+        $canShow = false;
+        foreach(Auth::user()->roles as $role){
+            if(strcasecmp($role->title ,'planning')==0){
+                $canShow = true;
+                break;
+            }
+        }
+        ?>
+        @if($canShow)
+        <li class="{{ Request::is('kpi_output/planning*') ? 'active' : '' }}">
+            <a href="{{ route('kpi_output','planning') }}">
+              <i class="fa fa-map"></i> <span>Planning</span>
+            </a>
+        </li>
+        @endif
+
+{{--
         <li class="treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
@@ -181,7 +283,7 @@
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
-          <ul class="treeview-menu">
+            <ul class="treeview-menu">
             <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
             <li class="treeview">
               <a href="#"><i class="fa fa-circle-o"></i> Level One
@@ -205,14 +307,23 @@
               </ul>
             </li>
             <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
-          </ul>
+            </ul>
         </li>
         <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
         <li class="header">LABELS</li>
         <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
         <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
         <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
-      </ul>
+
+
+        --}}
+
+
+
+    </ul>
+
+
+
     </section>
     <!-- /.sidebar -->
   </aside>
