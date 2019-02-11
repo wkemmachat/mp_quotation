@@ -66,11 +66,12 @@
                                 <tr>
                                     <th class="text-center">Name</th>
                                     <th class="text-center">Description</th>
+                                    <th class="text-center">Not Input Data (last 2 months)</th>
                                     <th class="text-center">Lastest Record Date</th>
                                     <th class="text-center">Total Amount <font color="green"><strong>{{date('M', strtotime($startLastMonth))}}</strong></font></th>
                                     <th class="text-center">Total Defect <font color="green"><strong>{{date('M', strtotime($startLastMonth))}}</strong></font></th>
-                                    <th class="text-center">Total Amount <font color="red"><strong>{{date('M', strtotime($startThisMonth))}}</strong></font></th>
-                                    <th class="text-center">Total Defect <font color="red"><strong>{{date('M', strtotime($startThisMonth))}}</strong></font></th>
+                                    <th class="text-center">Total Amount <font color="blue"><strong>{{date('M', strtotime($startThisMonth))}}</strong></font></th>
+                                    <th class="text-center">Total Defect <font color="blue"><strong>{{date('M', strtotime($startThisMonth))}}</strong></font></th>
                                 </tr>
 
                             </thead>
@@ -80,6 +81,14 @@
                                     <tr>
                                         <td class="text-center">{{ $roles[$i]->title }}</td>
                                         <td class="text-center">{{ $roles[$i]->description }}</td>
+
+                                        @if($date_collection_not_input_data[$i]==null)
+                                        <td class="text-center">-</td>
+                                        @else
+                                        <td class="text-center">
+                                            <font color="red"><strong>{{date('d-M-Y', strtotime($date_collection_not_input_data[$i]))}}</strong></font>
+                                        </td>
+                                        @endif
                                         {{--  <td>{{ $date_collection[$i] }}</td>  --}}
                                         @if($date_collection[$i]==null)
                                         <td class="text-center">-</td>
@@ -88,10 +97,10 @@
                                             <font color="blue"><strong>{{date('d-M-Y', strtotime($date_collection[$i]))}}</strong></font>
                                         </td>
                                         @endif
-                                        <td class="text-center"><font color="green"><strong>{{ $total_amount_last_month[$i] }}</strong></font></td>
-                                        <td class="text-center"><font color="green"><strong>{{ $total_defect_last_month[$i] }}</strong></font></td>
-                                        <td class="text-center"><font color="red"><strong>{{ $total_amount_this_month[$i] }}</strong></font></td>
-                                        <td class="text-center"><font color="red"><strong>{{ $total_defect_this_month[$i] }}</strong></font></td>
+                                        <td class="text-center"><font color="green"><strong>{{ number_format($total_amount_last_month[$i]) }}</strong></font></td>
+                                        <td class="text-center"><font color="green"><strong>{{ number_format($total_defect_last_month[$i]) }}</strong></font></td>
+                                        <td class="text-center"><font color="blue"><strong>{{ number_format($total_amount_this_month[$i]) }}</strong></font></td>
+                                        <td class="text-center"><font color="blue"><strong>{{ number_format($total_defect_this_month[$i]) }}</strong></font></td>
 
                                     </tr>
                                 @endfor

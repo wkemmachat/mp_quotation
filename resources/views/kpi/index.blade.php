@@ -81,13 +81,13 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Total Amount: <font color="red">*</font></label>
+                                        <label>Total Amount/ยอดรวม : <font color="red">*</font> (ใส่ 0 ถ้าเป็นวันหยุดหรืออาทิตย์)</label>
 
                                         <div class="input-group date">
                                             <div class="input-group-addon">
                                             <i class="fa fa-th-large"></i>
                                             </div>
-                                            <input type="text" name="total_amount" class="form-control pull-right" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" >
+                                            <input type="text" name="total_amount" required class="form-control pull-right" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" >
                                             {{--  <input type="text" name="total_amount" value="" class="form-control pull-right" data-inputmask='"mask": "9999"' data-mask>  --}}
                                             {{--  <input type="text" name="total_amount" value="" class="form-control pull-right" data-inputmask='"mask": "(999) 999-9999"' data-mask>  --}}
                                         </div>
@@ -95,7 +95,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Total Defect:</label>
+                                        <label>Total Defect/ยอดของเสีย :</label>
 
                                         <div class="input-group ">
                                             <div class="input-group-addon">
@@ -113,7 +113,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Remarks:</label>
+                                        <label>Remarks/หมายเหตุ :</label>
 
                                         <div class="input-group ">
                                             <div class="input-group-addon">
@@ -168,13 +168,13 @@
                         <table class="table table-responsive">
                             <thead>
                                 <tr>
-                                    <th>No.</th>
-                                    <th>Date</th>
-                                    <th>Name</th>
-                                    <th>Total Amount</th>
-                                    <th>Total Defect</th>
-                                    <th>Remark</th>
-                                    <th>Delete</th>
+                                    <th class="text-center">No.</th>
+                                    <th class="text-center">Date / วันที่</th>
+                                    <th class="text-center">Name / ผู้ทำงาน</th>
+                                    <th class="text-center">Total Amount / ยอดรวม</th>
+                                    <th class="text-center">Total Defect / ยอดเสีย</th>
+                                    <th class="text-center">Remark / หมายเหตุ</th>
+                                    <th class="text-center">Delete</th>
                                 </tr>
 
                             </thead>
@@ -182,13 +182,13 @@
                             <tbody>
                                 @foreach ($kpi_outputs as  $indexKey => $kpi_outputInLoop)
                                 <tr>
-                                    <td>{{++$indexKey}}</td>
-                                    <td>{{date('d-M-Y', strtotime($kpi_outputInLoop->input_date))}}</td>
-                                    <td>{{ $kpi_outputInLoop->user->name }}</td>
-                                    <td>{{ $kpi_outputInLoop->total_amount }}</td>
-                                    <td>{{ $kpi_outputInLoop->total_defect }}</td>
-                                    <td>{{ $kpi_outputInLoop->remark }}</td>
-                                    <td>
+                                    <td class="text-center">{{++$indexKey}}</td>
+                                    <td class="text-center">{{date('d-M-Y', strtotime($kpi_outputInLoop->input_date))}}</td>
+                                    <td class="text-center">{{ $kpi_outputInLoop->user->name }}</td>
+                                    <td class="text-center">{{ number_format($kpi_outputInLoop->total_amount) }}</td>
+                                    <td class="text-center">{{ number_format($kpi_outputInLoop->total_defect) }}</td>
+                                    <td class="text-center">{{ $kpi_outputInLoop->remark }}</td>
+                                    <td class="text-center">
                                         {{-- <a href="{{ route('kpi_output.delete',$kpi_outputInLoop->id) }}" class="btn btn-block btn-danger">Delete<a> --}}
                                         <form class="form-delete" method="post" action="{{ route('kpi_output.delete', [$roleSelected->title]) }}">
                                             @method('DELETE')

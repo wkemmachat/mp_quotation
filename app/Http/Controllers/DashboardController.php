@@ -19,6 +19,7 @@ class DashboardController extends Controller
     public function index()
     {
         $date_collection    = collect([]);
+        $date_collection_not_input_data    = collect([]);
         $total_amount_this_month       = collect([]);
         $total_amount_last_month       = collect([]);
         $total_defect_this_month       = collect([]);
@@ -32,6 +33,41 @@ class DashboardController extends Controller
 
         $roles = Auth::user()->roles;
         foreach ($roles as $role) {
+
+            // check date not input
+
+            $date_now = Carbon::today();
+            // dd($date_now);
+            $dt = $date_now->subDays(60);
+            // dd($dt);
+            $found = false;
+            $i = 0;
+            while(!$found){
+                $kpi_outputCheck = KpiOutput::where([
+                    ['role_id', '=', $role->id],
+                    ['input_date', '=', $dt]
+                ])->first();
+
+                if($kpi_outputCheck==null){
+                    $found = true;
+                    $date_collection_not_input_data->push($dt);
+                    break;
+                }
+                if($i==60){
+                    $found = true;
+                    $date_collection_not_input_data->push(null);
+                    break;
+                }
+                $dt = $dt->addDay();
+
+            }
+
+            // dd($date_collection_not_input_data);
+
+
+
+            // end check date not input
+
             // $dotArray = Dot::where([
             //     ['created_at', '>=', $carbon_date_nowSub15hr],
             //     ['created_at', '<=', $carbon_date_nowPlus1hr],
@@ -120,6 +156,6 @@ class DashboardController extends Controller
         // dd($end);
 
         return view('dashboard',compact('roles','date_collection','total_amount_this_month',
-        'total_amount_last_month','total_defect_this_month','total_defect_last_month','startThisMonth','startLastMonth'));
+        'total_amount_last_month','total_defect_this_month','total_defect_last_month','startThisMonth','startLastMonth','date_collection_not_input_data'));
     }
 }
