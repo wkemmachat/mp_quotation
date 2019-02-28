@@ -145,6 +145,113 @@
         </li>
         @endif
 
+
+        <?php
+        $canShow = false;
+        foreach(Auth::user()->roles as $role){
+            if(strcasecmp($role->title ,'online_sales_support')==0){
+                $canShow = true;
+                break;
+            }
+        }
+        ?>
+        @if($canShow)
+        <li class="{{ Request::is('kpi_output/online_sales_support*') ? 'active' : '' }}">
+            <a href="{{ route('kpi_output','online_sales_support') }}">
+              <i class="fa fa-map-pin"></i> <span>Online_Sales_Support</span>
+            </a>
+        </li>
+        @endif
+
+
+        <?php
+        $canShow = false;
+        foreach(Auth::user()->roles as $role){
+            if(strcasecmp($role->title ,'offline_sales_support')==0){
+                $canShow = true;
+                break;
+            }
+        }
+        ?>
+        @if($canShow)
+        <li class="{{ Request::is('kpi_output/offline_sales_support*') ? 'active' : '' }}">
+            <a href="{{ route('kpi_output','offline_sales_support') }}">
+              <i class="fa fa-map-o"></i> <span>Offline_Sales_Support</span>
+            </a>
+        </li>
+        @endif
+
+        <?php
+        $canShow = false;
+        foreach(Auth::user()->roles as $role){
+            if(strcasecmp($role->title ,'finished_goods_stock')==0){
+                $canShow = true;
+                break;
+            }
+        }
+        ?>
+        @if($canShow)
+        <li class="{{ Request::is('kpi_output/finished_goods_stock*') ? 'active' : '' }}">
+            <a href="{{ route('kpi_output','finished_goods_stock') }}">
+              <i class="fa fa-gg"></i> <span>Finished_Goods_Stock</span>
+            </a>
+        </li>
+        @endif
+
+
+        <?php
+        $canShow = false;
+        foreach(Auth::user()->roles as $role){
+            if(strcasecmp($role->title ,'raw_material_stock')==0){
+                $canShow = true;
+                break;
+            }
+        }
+        ?>
+        @if($canShow)
+        <li class="{{ Request::is('kpi_output/raw_material_stock*') ? 'active' : '' }}">
+            <a href="{{ route('kpi_output','raw_material_stock') }}">
+              <i class="fa fa-gg-circle"></i> <span>Raw_Material_Stock</span>
+            </a>
+        </li>
+        @endif
+
+
+        <?php
+        $canShow = false;
+        foreach(Auth::user()->roles as $role){
+            if(strcasecmp($role->title ,'design')==0){
+                $canShow = true;
+                break;
+            }
+        }
+        ?>
+        @if($canShow)
+        <li class="{{ Request::is('kpi_output/design*') ? 'active' : '' }}">
+            <a href="{{ route('kpi_output','design') }}">
+              <i class="fa fa-industry"></i> <span>Design</span>
+            </a>
+        </li>
+        @endif
+
+
+        <?php
+        $canShow = false;
+        foreach(Auth::user()->roles as $role){
+            if(strcasecmp($role->title ,'online_stock')==0){
+                $canShow = true;
+                break;
+            }
+        }
+        ?>
+        @if($canShow)
+        <li class="{{ Request::is('kpi_output/online_stock*') ? 'active' : '' }}">
+            <a href="{{ route('kpi_output','online_stock') }}">
+              <i class="fa fa-registered"></i> <span>Online_Stock</span>
+            </a>
+        </li>
+        @endif
+
 {{--
         <li class="treeview">
           <a href="#">
