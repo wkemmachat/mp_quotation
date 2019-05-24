@@ -17,3 +17,9 @@ git fetch origin
 git reset --hard origin/master
 
 git pull
+
+
+#git push
+git push origin master 
+
+

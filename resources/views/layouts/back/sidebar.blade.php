@@ -252,6 +252,23 @@
         </li>
         @endif
 
+        <?php
+        $canShow = false;
+        foreach(Auth::user()->roles as $role){
+            if(strcasecmp($role->title ,'project_sales')==0){
+                $canShow = true;
+                break;
+            }
+        }
+        ?>
+        @if($canShow)
+        <li class="{{ Request::is('kpi_output/project_sales*') ? 'active' : '' }}">
+            <a href="{{ route('kpi_output','project_sales') }}">
+              <i class="fa fa-adjust"></i> <span>Project_Sales</span>
+            </a>
+        </li>
+        @endif
+
 {{--
         <li class="treeview">
           <a href="#">
