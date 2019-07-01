@@ -269,6 +269,12 @@
         </li>
         @endif
 
+
+        <li class="{{ Request::is('product*') ? 'active' : '' }}">
+            <a href="{{ route('product') }}">
+              <i class="fa fa-archive"></i> <span>Product</span>
+            </a>
+        </li>
 {{--
         <li class="treeview">
           <a href="#">

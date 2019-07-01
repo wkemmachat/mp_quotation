@@ -25,4 +25,15 @@ git push origin master
 
 #Edit after clone and commit 
 
+#Make Controller
+php artisan make:controller ProductController
+
+#Make Model
+php artisan make:model Product
+
+#Make Model migrade (-m) conroller (-c) 
+php artisan make:model Todo -mcr
+
+#Run Migration by name
+php artisan migrate --path=/database/migrations/my_migration.php
 

@@ -58,6 +58,14 @@ Route::match(['put', 'patch'], '/user/manageUser/update/{id}','UserController@up
 Route::delete('/user/manageUser/{id}', 'UserController@destroy')->name('user.destroy');
 Route::get('/user/manageUser/changeStatus/{id}','UserController@changeStatus')->name('user.changeStatus');
 
+// Product
+Route::post('/product/manageProduct', 'ProductController@store')->name('product.store');
+Route::get('/product/manageProduct', 'ProductController@index')->name('product');
+Route::get('/product/manageProduct/edit/{id}','ProductController@edit')->name('product.edit');
+Route::match(['put', 'patch'], '/product/manageProduct/update/{id}','ProductController@update')->name('product.update');
+
+
+
 // KPI
 Route::get('/kpi_output/{id}','KpiOutputController@index')->name('kpi_output');
 Route::post('/kpi_output/{id}','KpiOutputController@store')->name('kpi_output.store');
@@ -65,6 +73,7 @@ Route::delete('/kpi_output/{id}','KpiOutputController@destroy')->name('kpi_outpu
 
 // Export
 Route::post('/exportKPI', 'KpiOutputController@exportKPI')->name('kpi_output.exportKPI');
+Route::post('/exportProduct', 'ProductController@exportProduct')->name('product.exportProduct');
 
 // KemLogin
 Route::post('/login_kem', 'KemLoginController@login')->name('login_kem');
