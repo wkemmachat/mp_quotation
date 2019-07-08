@@ -8,6 +8,10 @@ use Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use Kamaln7\Toastr\Facades\Toastr;
 use App\Exports\ExportProduct;
+use App\Exports\exportProductCollection;
+use App\Exports\exportProductCollectionQuery;
+use Carbon\Carbon;
+use App\Exports\ExportProductView;
 
 class ProductController extends Controller
 {
@@ -52,6 +56,9 @@ class ProductController extends Controller
         ]);
 
 
+        if($request->remark == null){
+            $request->remark = '';
+        }
         // save
         $productToBeSave = new Product();
         // $productToBeSave->input_date        = Carbon::createFromFormat('d-m-Y', $request->date_input)->format('Y-m-d');
@@ -139,5 +146,88 @@ class ProductController extends Controller
     public function exportProduct(Request $request)
     {
         return Excel::download(new ExportProduct($request), 'product.xlsx');
+    }
+
+    public function exportProductView(Request $request)
+    {
+
+        return Excel::download(new ExportProductView($request), 'productview.xlsx');
+    }
+
+
+    public function exportProductCollection(Request $request)
+    {
+
+        $data = [
+            [
+                'name' => 'Povilas',
+                'surname' => 'Korop',
+                'email' => 'povilas@laraveldaily.com',
+                'twitter' => '@povilaskorop'
+            ],
+            [
+                'name' => 'Taylor',
+                'surname' => 'Otwell',
+                'email' => 'taylor@laravel.com',
+                'twitter' => '@taylorotwell'
+            ]
+        ];
+        return Excel::download(new ExportProductCollection($data), 'productcollection.xlsx');
+    }
+
+
+    public function exportProductCollectionQuery(Request $request)
+    {
+        $startDate = Carbon::createFromFormat('d-m-Y', $request->startDate)->format('Y-m-d');
+        $endDate = Carbon::createFromFormat('d-m-Y', $request->endDate)->format('Y-m-d');
+
+        // dd($startDate);
+
+        $productArray =  Product::where('updated_at','>=',$startDate)->where('updated_at','<=',$endDate)
+        ->orderby('id', 'asc');
+
+        // $collectionArray = $productArray;
+        // foreach ($collectionArray as $key => $collect) {
+            // $collect->num = $key;
+            // dd($collect->num);
+        // }
+        // dd(sizeof($productArray));
+
+
+        // query data
+
+        foreach ($productArray as $key => $product) {
+
+        }
+
+        $age_obj_1 = array(['Name'=>'Peter','Age'=>'10'],
+                    ['Name'=>'Ben','Age'=>'20']);
+        $age_obj_2 = array(['Name'=>'Kem','Age'=>'30']);
+
+        $age_obj_3 = $age_obj_1+$age_obj_2;
+
+
+        dd($age_obj_3);
+
+        foreach ($productArray as $key => $productInLoop) {
+            # code...
+        }
+
+        $data = [
+
+            [
+                'name' => 'Povilas',
+                'surname' => 'Korop',
+                'email' => 'povilas@laraveldaily.com',
+                'twitter' => '@povilaskorop'
+            ],
+            [
+                'name' => 'Taylor',
+                'surname' => 'Otwell',
+                'email' => 'taylor@laravel.com',
+                'twitter' => '@taylorotwell'
+            ]
+        ];
+        return Excel::download(new ExportProductCollectionQuery($productArray), 'productcollection.xlsx');
     }
 }

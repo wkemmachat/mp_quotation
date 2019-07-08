@@ -59,7 +59,9 @@
     <script src="{{asset('adminlte/plugins/input-mask/jquery.inputmask.js')}}"></script>
     <script src="{{asset('adminlte/plugins/input-mask/jquery.inputmask.date.extensions.js')}}"></script>
     <script src="{{asset('adminlte/plugins/input-mask/jquery.inputmask.extensions.js')}}"></script>
+
     <script>
+
     $(document).ready(function () {
         $('.sidebar-menu').tree()
         $('.select2').select2()
@@ -70,12 +72,37 @@
         })
 
         $('[data-mask]').inputmask()
+
+
+        $(".plus_and_minus").inputFilter(function(value) {
+            return /^-?\d*$/.test(value); });
+
+        $(".plus_only").inputFilter(function(value) {
+            return /^\d*$/.test(value); });
+
     })
+
+    (function($) {
+        $.fn.inputFilter = function(inputFilter) {
+          return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
+            if (inputFilter(this.value)) {
+              this.oldValue = this.value;
+              this.oldSelectionStart = this.selectionStart;
+              this.oldSelectionEnd = this.selectionEnd;
+            } else if (this.hasOwnProperty("oldValue")) {
+              this.value = this.oldValue;
+              this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+            }
+          });
+        };
+      }(jQuery));
+
     </script>
 
     <script src="{{asset('toastr.min.js')}}"></script>
 
-    @yield('js')
+
+
 
 
 </head>
@@ -108,7 +135,7 @@
 </div>
 <!-- ./wrapper -->
 
-
+@yield('js')
 
 </body>
 </html>

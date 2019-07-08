@@ -275,6 +275,36 @@
               <i class="fa fa-archive"></i> <span>Product</span>
             </a>
         </li>
+
+        <li class="{{ Request::is('stock_real_time*') ? 'active' : '' }}">
+            <a href="{{ route('stock_real_time') }}">
+              <i class="fa fa-inbox"></i> <span>Stock</span>
+            </a>
+        </li>
+
+        <li class="{{ Request::is('transfer_in_not_approve*') ? 'active' : '' }}">
+            <a href="{{ route('transfer_in') }}">
+              <i class="fa fa-sign-in"></i> <span>Transfer In</span>
+            </a>
+        </li>
+
+        <li class="{{ Request::is('transfer_in_approve*') ? 'active' : '' }}">
+            <a href="{{ route('transfer_in_approve') }}">
+              <i class="fa fa-check-square"></i> <span>Transfer In Approved</span>
+            </a>
+        </li>
+
+        <li class="{{ Request::is('transfer_out_not_approve*') ? 'active' : '' }}">
+            <a href="{{ route('transfer_out') }}">
+              <i class="fa fa-sign-out"></i> <span>Transfer Out</span>
+            </a>
+        </li>
+
+        <li class="{{ Request::is('transfer_out_approve*') ? 'active' : '' }}">
+            <a href="{{ route('transfer_out_approve') }}">
+              <i class="fa fa-check-square-o"></i> <span>Transfer Out Approved</span>
+            </a>
+        </li>
 {{--
         <li class="treeview">
           <a href="#">

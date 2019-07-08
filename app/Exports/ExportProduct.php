@@ -23,7 +23,6 @@ class ExportProduct implements FromQuery, WithMapping, WithHeadings,WithColumnFo
 
     protected $startDate;
     protected $endDate;
-    protected $kpi_type_id;
 
 
     public function __construct($request)
@@ -41,12 +40,14 @@ class ExportProduct implements FromQuery, WithMapping, WithHeadings,WithColumnFo
         $productArray =  Product::where('updated_at','>=',$this->startDate)->where('updated_at','<=',$this->endDate)
         ->orderby('id', 'asc');
 
-        // $num = 1;
-        // foreach($productArray as $product) {
-        //     dd("testaaa");
-        //     $kpiOutput['num'] = "abc";
+        // $returnDataArray = $productArray;
 
-        //     dd($kpiOutput->num);
+        // foreach($productArray as $product) {
+        //     // dd("testaaa");
+        //     $returnDataArray->id = 2;
+
+
+        //     // dd($product->num);
         // }
 
 
@@ -64,7 +65,6 @@ class ExportProduct implements FromQuery, WithMapping, WithHeadings,WithColumnFo
         */
 
         return [
-
 
             $obj->id,
             $obj->productId,

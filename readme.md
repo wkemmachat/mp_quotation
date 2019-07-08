@@ -36,4 +36,8 @@ php artisan make:model Todo -mcr
 
 #Run Migration by name
 php artisan migrate --path=/database/migrations/my_migration.php
+php artisan make:model TransferInOut -mcr
 
+#tinker
+php artisan tinker
+App\Product::find(1)->stock_real_time;

@@ -198,7 +198,7 @@
         </div>
         @endif
 
-
+{{--
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
             <!-- Default box -->
@@ -210,8 +210,66 @@
                         <div class="box-body">
                             <div class="register-box-body">
 
-                                {{-- <form action="{{ route('product.exportProduct')}}" method="post"> --}}
                                 <form action="{{ route('product.exportProduct')}}" method="post">
+                                    @csrf
+
+                                    <div class="form-group">
+                                        <label>Start Date: <font color="red">*</font></label>
+
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <input type="text" name="startDate" value="" class="datepicker form-control pull-right" required />
+                                        </div>
+                                        <!-- /.input group -->
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>End Date: <font color="red">*</font></label>
+
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <input type="text" name="endDate" value="" class="datepicker form-control pull-right" required />
+                                        </div>
+                                        <!-- /.input group -->
+                                    </div>
+
+
+
+                                    <div class="row">
+                                        <div class="col-xs-8">
+
+                                        </div>
+                                    <!-- /.col -->
+                                        <div class="col-xs-4">
+                                            <button type="submit" class="btn btn-primary btn-block btn-flat">Export</button>
+                                        </div>
+                                    <!-- /.col -->
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div> --}}
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+            <!-- Default box -->
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Export To Excel <font color="blue"><strong> Products View</strong></font> Data</h3>
+                        </div>
+
+                        <div class="box-body">
+                            <div class="register-box-body">
+
+                                {{-- <form action="{{ route('product.exportProduct')}}" method="post"> --}}
+                                <form action="{{ route('product.exportProductView')}}" method="post">
                                     @csrf
 
                                     <div class="form-group">
@@ -264,7 +322,7 @@
             </div>
         </div>
 
-
+        {{--  @include('product._exportProduct',$products)  --}}
       <!-- /.box -->
 
 

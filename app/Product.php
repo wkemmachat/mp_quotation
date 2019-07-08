@@ -14,4 +14,9 @@ class Product extends Model
     public function user_key_in() {
         return $this->belongsTo(User::class);
     }
+
+    public function stock_real_time()
+    {
+        return $this->hasOne(StockRealTime::class,'product_running_id','id');
+    }
 }

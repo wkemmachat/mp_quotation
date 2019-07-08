@@ -64,6 +64,30 @@ Route::get('/product/manageProduct', 'ProductController@index')->name('product')
 Route::get('/product/manageProduct/edit/{id}','ProductController@edit')->name('product.edit');
 Route::match(['put', 'patch'], '/product/manageProduct/update/{id}','ProductController@update')->name('product.update');
 
+// Transfer_In_not_Approved
+Route::post('/transfer_in_not_approve', 'TransferInOutController@store_in')->name('transfer_in.store_in');
+Route::get('/transfer_in_not_approve', 'TransferInOutController@index_in')->name('transfer_in');
+Route::delete('/transfer_in_not_approve/{id}', 'TransferInOutController@destroy_in')->name('transfer_in.destroy_in');
+
+// Transfer_In_Approved
+Route::post('/transfer_in_approve', 'TransferInOutController@approve_in')->name('transfer_in_approve.approve_in');
+Route::get('/transfer_in_approve', 'TransferInOutController@index_in_approve')->name('transfer_in_approve');
+
+// Transfer_Out_not_Approved
+Route::post('/transfer_out_not_approve', 'TransferInOutController@store_out')->name('transfer_out.store_out');
+Route::get('/transfer_out_not_approve', 'TransferInOutController@index_out')->name('transfer_out');
+Route::delete('/transfer_out_not_approve/{id}', 'TransferInOutController@destroy_out')->name('transfer_out.destroy_out');
+
+// Transfer_Out_Approved
+Route::post('/transfer_out_approve', 'TransferInOutController@approve_out')->name('transfer_out_approve.approve_out');
+Route::get('/transfer_out_approve', 'TransferInOutController@index_out_approve')->name('transfer_out_approve');
+
+// Stock_Real_Time
+Route::get('/stock_real_time', 'StockRealTimeController@index')->name('stock_real_time');
+
+
+// Route::get('/transfer_in/edit/{id}','ProductController@edit')->name('transfer_in.edit');
+// Route::match(['put', 'patch'], '/product/manageProduct/update/{id}','ProductController@update')->name('product.update');
 
 
 // KPI
@@ -74,6 +98,12 @@ Route::delete('/kpi_output/{id}','KpiOutputController@destroy')->name('kpi_outpu
 // Export
 Route::post('/exportKPI', 'KpiOutputController@exportKPI')->name('kpi_output.exportKPI');
 Route::post('/exportProduct', 'ProductController@exportProduct')->name('product.exportProduct');
+Route::post('/exportProductCollection', 'ProductController@exportProductCollection')->name('product.exportProductCollection');
+Route::post('/exportProductCollectionQuery', 'ProductController@exportProductCollectionQuery')->name('product.exportProductCollectionQuery');
+Route::post('/exportProductView', 'ProductController@exportProductView')->name('product.exportProductView');
+Route::post('/exportTransferInOut', 'TransferInOutController@exportTransferInOut')->name('transfer.exportTransferInOut');
+Route::post('/exportStock', 'StockRealTimeController@exportStock')->name('stock.exportStock');
+
 
 // KemLogin
 Route::post('/login_kem', 'KemLoginController@login')->name('login_kem');
