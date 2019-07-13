@@ -32,11 +32,11 @@ Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 Route::get('/home', 'HomeController@index')->name('home');
 
 // Category
-Route::get('/category', 'CategoryController@index')->name('category');
-Route::post('/category', 'CategoryController@store')->name('category.store');
-Route::get('/category/edit/{id}','CategoryController@edit');
-Route::match(['put', 'patch'], '/category/update/{id}','CategoryController@update')->name('category.update');
-Route::delete('/category/{id}', 'CategoryController@destroy')->name('category.destroy');
+// Route::get('/category', 'CategoryController@index')->name('category');
+// Route::post('/category', 'CategoryController@store')->name('category.store');
+// Route::get('/category/edit/{id}','CategoryController@edit');
+// Route::match(['put', 'patch'], '/category/update/{id}','CategoryController@update')->name('category.update');
+// Route::delete('/category/{id}', 'CategoryController@destroy')->name('category.destroy');
 
 // Role
 Route::get('user/role', 'RoleController@index')->name('role');
@@ -84,10 +84,18 @@ Route::get('/transfer_out_approve', 'TransferInOutController@index_out_approve')
 
 // Stock_Real_Time
 Route::get('/stock_real_time', 'StockRealTimeController@index')->name('stock_real_time');
+Route::post('/stock_real_time_search_by_product_id', 'StockRealTimeController@searchByProductId')->name('stock_real_time.searchByProductId');
+Route::post('/stock_real_time_search_by_category_id', 'StockRealTimeController@searchByCategoryId')->name('stock_real_time.searchByCategoryId');
 
 
 // Route::get('/transfer_in/edit/{id}','ProductController@edit')->name('transfer_in.edit');
 // Route::match(['put', 'patch'], '/product/manageProduct/update/{id}','ProductController@update')->name('product.update');
+
+// product_category
+Route::get('/category', 'ProductCategoryController@index')->name('category');
+Route::post('/category', 'ProductCategoryController@store')->name('category.store');
+Route::get('/category/edit/{id}','ProductCategoryController@edit')->name('category.edit');
+Route::match(['put', 'patch'], '/category/update/{id}','ProductCategoryController@update')->name('category.update');
 
 
 // KPI

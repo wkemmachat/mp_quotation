@@ -45,7 +45,7 @@
                         <h3 class="box-title">List Data <strong><font color='red'>NOT CONFIRMED</font></strong></h3>
                     </div>
 
-                    <div class="box-body">
+                    <div class="box-body table-responsive">
                         <table class="table table-responsive">
                             <thead>
                                 <tr>
@@ -145,7 +145,7 @@
                         <h3 class="box-title">List Data <strong><font color='green'>CONFIRMED</font></strong></h3>
                     </div>
 
-                    <div class="box-body">
+                    <div class="box-body table-responsive">
                         <table class="table table-responsive">
                             <thead>
                                 <tr>

@@ -60,7 +60,7 @@
                         <h3 class="box-title">List Roles/ Input Data</h3>
                     </div>
 
-                    <div class="box-body">
+                    <div class="box-body table-responsive">
                         <table class="table table-responsive">
                             <thead>
                                 <tr>

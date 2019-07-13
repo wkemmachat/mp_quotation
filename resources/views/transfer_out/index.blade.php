@@ -120,6 +120,27 @@
                                         </div>
 
 
+                                        <div class="form-group">
+                                            <label>Tranfser Out Without Approved/โอนออกแบบตัดสินค้าเลย :</label>
+
+                                            <div class="input-group ">
+                                                {{--  <div class="input-group-addon">
+                                                <i class="fa fa-sticky-note"></i>
+                                                </div>  --}}
+                                                <div class="checkbox">
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <input type="checkbox" name="checkForApprove" value="y" checked/>
+                                                    <label>Check for Approved <font color="red">ถ้า Tick จะเป็นการตัด Stock เลย</font></label>
+                                                </div>
+                                            </div>
+
+                                            @if ($errors->has('remark'))
+                                                <span class="text-red" role="alert">
+                                                    <strong>{{ $errors->first('remark') }}</strong>
+                                                </span>
+                                            @endif
+                                            <!-- /.input group -->
+                                        </div>
 
                                 </div>
                             </div>
@@ -136,7 +157,7 @@
                             <h3 class="box-title">Transfer Out Data</h3>
                         </div>
 
-                        <div class="box-body">
+                        <div class="box-body table-responsive">
                             <table class="table table-responsive" id="myTbl">
                                 <thead>
                                     <tr>
@@ -202,7 +223,7 @@
                         <h3 class="box-title">List Data <strong><font color='red'>NOT CONFIRMED</font></strong></h3>
                     </div>
 
-                    <div class="box-body">
+                    <div class="box-body table-responsive">
                         <table class="table table-responsive">
                             <thead>
                                 <tr>
@@ -210,6 +231,7 @@
                                     <th class="text-center">Product Id</th>
                                     <th class="text-center">Product Name</th>
                                     <th class="text-center">Amount</th>
+                                    <th class="text-center">Type</th>
                                     <th class="text-center">Document Id</th>
                                     <th class="text-center">Created Date / วันที่</th>
                                     {{--  <th class="text-center">Name / ผู้ทำงาน</th>  --}}
@@ -251,6 +273,7 @@
                                         <td>{{ $transfer_out_without_confirmed[$i]->product_running->productId }}</td>
                                         <td>{{ $transfer_out_without_confirmed[$i]->product_running->productName }}</td>
                                         <td class="text-center">{{ $transfer_out_without_confirmed[$i]->amount}}</td>
+                                        <td class="text-center">{{ $transfer_out_without_confirmed[$i]->out_type}}</td>
                                         <td class="text-center"><font color="blue">{{ $transfer_out_without_confirmed[$i]->document_reference_id }}</font></td>
                                         <td class="text-center">{{ date('d-M-Y',strtotime($transfer_out_without_confirmed[$i]->input_date)) }}</td>
                                         {{--  <td class="text-center">{{ $transfer_out_without_confirmed[$i]->user_key_in->name }}</td>  --}}

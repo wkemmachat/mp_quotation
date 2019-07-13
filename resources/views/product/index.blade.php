@@ -97,6 +97,17 @@
                                     </div>
 
                                     <div class="form-group">
+                                        <label>Product Category :</label>
+                                        <div class="form-group has-feedback">
+                                            <select name="productCategory_running_Id" class="form-control select2" placeholder="USER_TYPE">
+                                                @foreach ($categories as $categoriesInLoop)
+                                                    <option value="{{ $categoriesInLoop->id }}">{{ $categoriesInLoop->productCategoryId }} : {{ $categoriesInLoop->productCategoryName }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
                                         <label>Remarks/หมายเหตุ :</label>
 
                                         <div class="input-group ">
@@ -148,15 +159,16 @@
                         <h3 class="box-title">List Data</h3>
                     </div>
 
-                    <div class="box-body">
+                    <div class="box-body table-responsive">
                         <table class="table table-responsive">
                             <thead>
                                 <tr>
                                     <th class="text-center">No.</th>
                                     <th class="text-center">Product Id</th>
                                     <th class="text-center">Product Name</th>
+                                    <th class="text-center">Product Cat</th>
                                     <th class="text-center">Updated Date / วันที่</th>
-                                    <th class="text-center">Name / ผู้ทำงาน</th>
+                                    {{--  <th class="text-center">Name / ผู้ทำงาน</th>  --}}
                                     <th class="text-center">Remark / หมายเหตุ</th>
                                     <th class="text-center">Edit</th>
                                 </tr>
@@ -169,9 +181,10 @@
                                     <td class="text-center">{{++$indexKey}}</td>
                                     <td class="text-center">{{ $productInLoop->productId }}</td>
                                     <td class="text-center">{{ $productInLoop->productName }}</td>
+                                    <td class="text-center">{{ $productInLoop->product_category->productCategoryId }}</td>
                                     <td class="text-center">{{ date('d-M-Y',strtotime($productInLoop->created_at)) }}</td>
                                     {{-- <td class="text-center">{{ $productInLoop->created_at->format('d M Y') }}</td> --}}
-                                    <td class="text-center">{{ $productInLoop->user_key_in->name }}</td>
+                                    {{--  <td class="text-center">{{ $productInLoop->user_key_in->name }}</td>  --}}
                                     <td class="text-center">{{ $productInLoop->remark }}</td>
                                     <td class="text-center">
                                         {{-- <a href="{{ route('kpi_output.delete',$kpi_outputInLoop->id) }}" class="btn btn-block btn-danger">Delete<a> --}}

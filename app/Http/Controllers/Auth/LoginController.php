@@ -53,9 +53,11 @@ class LoginController extends Controller
         $user_type  =  Auth::user()->user_type;
 
         if(strcasecmp($user_type ,'root')==0){
-            return '/dashboard';
+            return '/stock_real_time';
         }else if(strcasecmp($user_type ,'admin')==0){
-            return '/dashboard';
+            return '/stock_real_time';
+        }else if(strcasecmp($user_type ,'sales')==0){
+            return '/stock_real_time';
         }else{
             return '/home';
         }

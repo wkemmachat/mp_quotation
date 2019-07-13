@@ -12,6 +12,7 @@ use App\Exports\exportProductCollection;
 use App\Exports\exportProductCollectionQuery;
 use Carbon\Carbon;
 use App\Exports\ExportProductView;
+use App\ProductCategory;
 
 class ProductController extends Controller
 {
@@ -25,9 +26,9 @@ class ProductController extends Controller
 
         // $kpi_outputs = KpiOutput::where('role_id','=',$roleSelected->id)->orderBy('updated_at', 'desc')->paginate(10);
         $products = Product::orderBy('updated_at', 'desc')->paginate(10);
-
+        $categories = ProductCategory::all();
         // return view('kpi.index',compact('roleSelected','usersHaveRoleArray','kpi_outputs'));
-        return view('product.index',compact('products'));
+        return view('product.index',compact('products','categories'));
 
     }
 
@@ -53,6 +54,7 @@ class ProductController extends Controller
         $request->validate([
             'productId' => 'required',
             'productName' => 'required',
+            'productCategory_running_Id' =>'required',
         ]);
 
 
@@ -66,14 +68,14 @@ class ProductController extends Controller
         $productToBeSave->productId         = $request->productId;
         $productToBeSave->productName       = $request->productName;
         $productToBeSave->remark            = $request->remark;
-
+        $productToBeSave->productCategoryRunning_id     = $request->productCategory_running_Id;
         $productToBeSave->save();
 
         $products = Product::orderBy('updated_at', 'desc')->paginate(10);
-
+        $categories = ProductCategory::all();
         $message = "Successfully add data";
         Toastr::success($message, $title = "Successfully Action", $options = []);
-        return view('product.index',compact('products'));
+        return view('product.index',compact('products','categories'));
     }
 
     /**
@@ -97,9 +99,11 @@ class ProductController extends Controller
     {
         // dd($id);
         $productSelected = Product::findOrFail($id);
+        $categories = ProductCategory::all();
+        // dd($categories);
         // dd($userSelected);
         // $users = User::all();
-        return view('product.edit',compact('productSelected'));
+        return view('product.edit',compact('productSelected','categories'));
     }
 
     /**
@@ -116,19 +120,22 @@ class ProductController extends Controller
         $validatedData = $request->validate([
             'productId' => 'required|max:255',
             'productName' => 'required|max:255',
+            'productCategory_running_Id' =>'required',
         ]);
 
         // update
         $productSelected->productId     = $request['productId'];
         $productSelected->productName   = $request['productName'];
         $productSelected->remark        = $request['remark'];
+        $productSelected->productCategoryRunning_id     = $request->productCategory_running_Id;
         $productSelected->save();
 
         $products = Product::orderBy('updated_at', 'desc')->paginate(10);
+        $categories = ProductCategory::all();
 
         $message = "Successfully add data";
         Toastr::success($message, $title = "Successfully Action", $options = []);
-        return view('product.index',compact('products'));
+        return view('product.index',compact('products','categories'));
     }
 
     /**

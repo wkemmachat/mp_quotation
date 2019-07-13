@@ -6,6 +6,9 @@ use App\StockRealTime;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ExportStock;
+use App\Product;
+use App\ProductCategory;
+use App\TransferInOut;
 
 class StockRealTimeController extends Controller
 {
@@ -16,9 +19,76 @@ class StockRealTimeController extends Controller
      */
     public function index()
     {
-        return view('stock_real_time.index');
+        $productAll = Product::orderBy('productId', 'asc')->get();
+        $productCategoryAll = ProductCategory::orderBy('productCategoryId','asc')->get();
+        return view('stock_real_time.index',compact('productAll','productCategoryAll'));
     }
 
+    public function searchByProductId(Request $request)
+    {
+        // dd($request);
+        $productSelected = Product::findOrFail($request->product_running_id_search);
+
+        $sumOutByProductMp = TransferInOut::where('product_running_id','=',$productSelected->id)->where('isConfirmed','=',0)
+        ->where('in_or_out','=','out')->where('out_type','=','mp')->sum('amount');
+
+        $sumOutByProductFur = TransferInOut::where('product_running_id','=',$productSelected->id)->where('isConfirmed','=',0)
+        ->where('in_or_out','=','out')->where('out_type','=','fur')->sum('amount');
+
+        $sumOutByProductOff = TransferInOut::where('product_running_id','=',$productSelected->id)->where('isConfirmed','=',0)
+        ->where('in_or_out','=','out')->where('out_type','=','off')->sum('amount');
+
+        $sumInByProduct = TransferInOut::where('product_running_id','=',$productSelected->id)->where('isConfirmed','=',0)
+        ->where('in_or_out','=','in')->sum('amount');
+
+
+        $productCategoryAll = ProductCategory::orderBy('productCategoryId','asc')->get();
+        $productAll = Product::orderBy('productId', 'asc')->get();
+        return view('stock_real_time.index',compact('productAll','productCategoryAll','productSelected','sumOutByProductMp','sumOutByProductFur','sumOutByProductOff','sumInByProduct'));
+    }
+
+    public function searchByCategoryId(Request $request)
+    {
+
+
+        $productArrayByProductCatId = Product::where('productCategoryRunning_id','=',$request->product_category_running_id_search)->orderBy('productId', 'asc')->get();
+
+        $outWaitingArrayMp       = array();
+        $outWaitingArrayFur      = array();
+        $outWaitingArrayOff      = array();
+        $inWaitingArray         = array();
+
+        for($i=0 ; $i<count($productArrayByProductCatId) ;$i++) {
+
+            $sumOutByProductMp = TransferInOut::where('product_running_id','=',$productArrayByProductCatId[$i]->id)->where('isConfirmed','=',0)
+            ->where('in_or_out','=','out')->where('out_type','=','mp')->sum('amount');
+
+            $sumOutByProductFur = TransferInOut::where('product_running_id','=',$productArrayByProductCatId[$i]->id)->where('isConfirmed','=',0)
+            ->where('in_or_out','=','out')->where('out_type','=','fur')->sum('amount');
+
+            $sumOutByProductOff = TransferInOut::where('product_running_id','=',$productArrayByProductCatId[$i]->id)->where('isConfirmed','=',0)
+            ->where('in_or_out','=','out')->where('out_type','=','off')->sum('amount');
+
+            $sumInByProduct = TransferInOut::where('product_running_id','=',$productArrayByProductCatId[$i]->id)->where('isConfirmed','=',0)
+            ->where('in_or_out','=','in')->sum('amount');
+
+
+            array_push($outWaitingArrayMp,$sumOutByProductMp);
+            array_push($outWaitingArrayFur,$sumOutByProductFur);
+            array_push($outWaitingArrayOff,$sumOutByProductOff);
+            array_push($inWaitingArray,$sumInByProduct);
+
+            // dd($products[$i]->id);
+            // dd($outByProductOff);
+        }
+
+
+
+
+        $productCategoryAll = ProductCategory::orderBy('productCategoryId','asc')->get();
+        $productAll = Product::orderBy('productId', 'asc')->get();
+        return view('stock_real_time.index',compact('productAll','productArrayByProductCatId','productCategoryAll','outWaitingArrayMp','outWaitingArrayFur','outWaitingArrayOff','inWaitingArray'));
+    }
     /**
      * Show the form for creating a new resource.
      *

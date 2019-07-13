@@ -48,7 +48,7 @@
                                 <h3 class="box-title">Transfer <font color="blue"><strong> IN </strong></font> Data</h3>
                             </div>
 
-                            <div class="box-body">
+                            <div class="box-body table-responsive">
                                 <div class="register-box-body">
 
 
@@ -186,7 +186,7 @@
                         <h3 class="box-title">List Data <strong><font color='red'>NOT CONFIRMED</font></strong></h3>
                     </div>
 
-                    <div class="box-body">
+                    <div class="box-body table-responsive">
                         <table class="table table-responsive">
                             <thead>
                                 <tr>

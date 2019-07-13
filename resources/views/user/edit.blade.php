@@ -90,7 +90,7 @@
 
                                             <div class="form-group has-feedback">
                                                 <select name="user_type" class="form-control select2" placeholder="USER_TYPE">
-                                                    <option {{ ($userSelected->user_type =='user')?"selected":"" }} value="user">USER</option>
+                                                    <option {{ ($userSelected->user_type =='sales')?"selected":"" }} value="sales">SALES</option>
                                                     <option {{ ($userSelected->user_type =='admin')?"selected":"" }} value="admin">ADMIN</option>
                                                     <option {{ ($userSelected->user_type =='root')?"selected":"" }} value="root">ROOT</option>
                                                 </select>

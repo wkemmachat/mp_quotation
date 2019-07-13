@@ -90,7 +90,7 @@
 
                                             <div class="form-group has-feedback">
                                                 <select name="user_type" class="form-control select2" placeholder="USER_TYPE">
-                                                    <option value="user">USER</option>
+                                                    <option value="sales">SALES</option>
                                                     <option value="admin">ADMIN</option>
                                                     <option value="root">ROOT</option>
                                                 </select>
@@ -153,7 +153,7 @@
                         <h3 class="box-title">List Users</h3>
                     </div>
 
-                    <div class="box-body">
+                    <div class="box-body table-responsive">
                         <table class="table table-responsive">
                             <thead>
                                 <tr>

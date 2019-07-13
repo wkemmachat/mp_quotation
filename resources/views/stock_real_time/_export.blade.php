@@ -12,6 +12,7 @@
             <th>No.</th>
             <th>Product Id</th>
             <th>Product Name</th>
+            <th>Product Cat</th>
             <th>Inventory</th>
             <th>Pending Delivery (MP)</th>
             <th>Pending Delivery (FUR)</th>
@@ -32,6 +33,7 @@
                 <td>{{ $i+1 }}</td>
                 <td>{{ $products[$i]->productId }}</td>
                 <td>{{ $products[$i]->productName }}</td>
+                <td>{{ $products[$i]->product_category->productCategoryId }}</td>
                 <td>{{ $products[$i]->stock_real_time->amount}}</td>
                 <td>{{ $outWaitingArrayMp[$i] }}</td>
                 <td>{{ $outWaitingArrayFur[$i] }}</td>

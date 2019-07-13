@@ -158,11 +158,18 @@ class TransferInOutController extends Controller
             'amount.*' => 'required|integer',
             'in_or_out' => 'required',
             'out_type' => 'required',
+            // 'checkForApprove' => 'require',
         ]);
 
         if($request->remark == null){
             $request->remark = '';
         }
+
+        if($request->checkForApprove == null){
+            $request->checkForApprove = '';
+        }
+
+        // dd($request->checkForApprove);
 
 
         // dd($request->all());
@@ -213,7 +220,36 @@ class TransferInOutController extends Controller
                     $transferToBeSave->in_or_out        = $request->in_or_out;
                     $transferToBeSave->out_type        = $request->out_type;
 
-                    $transferToBeSave->save();
+                    // $transferToBeSave->save();
+
+                    // checkForApprove = y
+                    if($request->checkForApprove=='y'){
+
+                        $transferToBeSave->isConfirmed      = 1;
+                        if($transferToBeSave->save()){
+                            // save and cut stock
+                            // dd("true");
+                            $stockRealtimeObj = StockRealTime::where('product_running_id','=',$transferToBeSave->product_running->id)->first();
+                            if($stockRealtimeObj==null){
+                                // Error
+                                // impossible
+                                dd("error No Stock to deduct");
+                            }else{
+                                // update
+                                $stockRealtimeObj->amount              -= $transferToBeSave->amount;
+                                $stockRealtimeObj->transfer_in_out_id  = $transferToBeSave->id;
+                                $stockRealtimeObj->save();
+                            }
+                        }
+
+                    }else{
+                        // normal save
+                        // dd("false");
+                        $transferToBeSave->save();
+                    }
+
+
+
                 } // end for
 
                 $message = "Successfully add data";

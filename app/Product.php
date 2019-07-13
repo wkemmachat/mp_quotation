@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     protected $fillable = [ 'remark','productId','productName'
-                            ,'user_key_in_id'  ];
+                            ,'user_key_in_id','productCategoryRunning_id'  ];
 
     // protected $dates = ['input_date'];
 
@@ -18,5 +18,8 @@ class Product extends Model
     public function stock_real_time()
     {
         return $this->hasOne(StockRealTime::class,'product_running_id','id');
+    }
+    public function product_category() {
+        return $this->belongsTo(ProductCategory::class,'productCategoryRunning_id');
     }
 }

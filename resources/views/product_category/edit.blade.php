@@ -2,7 +2,7 @@
 
 
 @section('title')
-    Product
+    Product Category
 @endsection
 
 @section('content')
@@ -22,7 +22,7 @@
     @endif
     <section class="content-header">
         <h1>
-            Products
+            Product Category
             <small>Add/Edit/List Data</small>
         </h1>
         {{--  <ol class="breadcrumb">
@@ -39,13 +39,13 @@
             <!-- Default box -->
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Add <font color="red"><strong> Edit Product </strong></font> Data</h3>
+                            <h3 class="box-title">Add <font color="red"><strong> Edit Product Category </strong></font> Data</h3>
                         </div>
 
                         <div class="box-body">
                             <div class="register-box-body">
 
-                                <form action="{{route('product.update',$productSelected->id)}}" method="post">
+                                <form action="{{route('category.update',$productCategorySelected->id)}}" method="post">
                                     @csrf
                                     @method('PATCH')
                                     {{-- <div class="form-group">
@@ -61,53 +61,39 @@
 
 
                                     <div class="form-group">
-                                            <label>Product Id :</label>
+                                            <label>Product Category Id :</label>
 
                                             <div class="input-group ">
                                                 <div class="input-group-addon">
                                                 <i class="fa fa-archive"></i>
                                                 </div>
-                                                <input type="text" name="productId" value="{{ $productSelected->productId }}" maxlength="200" class="form-control pull-right" >
+                                                <input type="text" name="productCategoryId" value="{{ $productCategorySelected->productCategoryId }}" maxlength="200" class="form-control pull-right" >
                                             </div>
 
-                                            @if ($errors->has('productId'))
+                                            @if ($errors->has('productCategoryId'))
                                                 <span class="text-red" role="alert">
-                                                    <strong>{{ $errors->first('productId') }}</strong>
+                                                    <strong>{{ $errors->first('productCategoryId') }}</strong>
                                                 </span>
                                             @endif
                                             <!-- /.input group -->
                                     </div>
 
                                     <div class="form-group">
-                                            <label>Product Name :</label>
+                                            <label>Product Category Name :</label>
 
                                             <div class="input-group ">
                                                 <div class="input-group-addon">
                                                 <i class="fa fa-sticky-note-o"></i>
                                                 </div>
-                                                <input type="text" name="productName" value="{{ $productSelected->productName }}" maxlength="200" class="form-control pull-right" >
+                                                <input type="text" name="productCategoryName" value="{{ $productCategorySelected->productCategoryName }}" maxlength="200" class="form-control pull-right" >
                                             </div>
 
-                                            @if ($errors->has('productName'))
+                                            @if ($errors->has('productCategoryName'))
                                                 <span class="text-red" role="alert">
-                                                    <strong>{{ $errors->first('productName') }}</strong>
+                                                    <strong>{{ $errors->first('productCategoryName') }}</strong>
                                                 </span>
                                             @endif
                                             <!-- /.input group -->
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Product Category :</label>
-                                        <div class="form-group has-feedback">
-                                            <select name="productCategory_running_Id" class="form-control select2" placeholder="USER_TYPE">
-                                                @foreach ($categories as $categoriesInLoop)
-                                                    <option value="{{ $categoriesInLoop->id }}" {{ ($categoriesInLoop->id==$productSelected->product_category->id)?" selected ":"" }}
-                                                    >
-                                                    {{ $categoriesInLoop->productCategoryId }} : {{ $categoriesInLoop->productCategoryName }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
                                     </div>
 
                                     <div class="form-group">
@@ -117,7 +103,7 @@
                                             <div class="input-group-addon">
                                             <i class="fa fa-sticky-note"></i>
                                             </div>
-                                            <input type="text" name="remark" value="{{ $productSelected->remark }}" maxlength="200" class="form-control pull-right" >
+                                            <input type="text" name="remark" value="{{ $productCategorySelected->remark }}" maxlength="200" class="form-control pull-right" >
                                         </div>
 
                                         @if ($errors->has('remark'))

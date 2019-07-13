@@ -26,14 +26,63 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
 
-        <li class="{{ Request::is('dashboard*') ? 'active' : '' }}">
-            <a href="{{ route('dashboard') }}">
-              <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-              {{--  <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>  --}}
+
+        <!-- only Sales -->
+
+        <li class="{{ Request::is('stock_real_time*') ? 'active' : '' }}">
+            <a href="{{ route('stock_real_time') }}">
+              <i class="fa fa-inbox"></i> <span>Stock</span>
             </a>
         </li>
+
+
+        @if(Auth::user()->user_type=='root'||Auth::user()->user_type=='admin')
+
+        <li class="{{ Request::is('transfer_in_not_approve*') ? 'active' : '' }}">
+            <a href="{{ route('transfer_in') }}">
+              <i class="fa fa-sign-in"></i> <span>Transfer In</span>
+            </a>
+        </li>
+
+        <li class="{{ Request::is('transfer_in_approve*') ? 'active' : '' }}">
+            <a href="{{ route('transfer_in_approve') }}">
+              <i class="fa fa-check-square"></i> <span>Transfer In Approved</span>
+            </a>
+        </li>
+
+        <li class="{{ Request::is('transfer_out_not_approve*') ? 'active' : '' }}">
+            <a href="{{ route('transfer_out') }}">
+              <i class="fa fa-sign-out"></i> <span>Transfer Out</span>
+            </a>
+        </li>
+
+        <li class="{{ Request::is('transfer_out_approve*') ? 'active' : '' }}">
+            <a href="{{ route('transfer_out_approve') }}">
+              <i class="fa fa-check-square-o"></i> <span>Transfer Out Approved</span>
+            </a>
+        </li>
+        @endif
+
+        @if(Auth::user()->user_type=='root')
+
+        <li class="{{ Request::is('category*') ? 'active' : '' }}">
+            <a href="{{ route('category') }}">
+              <i class="fa fa-bars"></i> <span>Category</span>
+            </a>
+        </li>
+
+        <li class="{{ Request::is('product*') ? 'active' : '' }}">
+            <a href="{{ route('product') }}">
+              <i class="fa fa-archive"></i> <span>Product</span>
+            </a>
+        </li>
+        @endif
+
+        {{--  <li class="{{ Request::is('dashboard*') ? 'active' : '' }}">
+            <a href="{{ route('dashboard') }}">
+              <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+            </a>
+        </li>  --}}
 
         @can('isRoot')
         <li class="treeview {{ Request::is('user*') ? 'active' : '' }}">
@@ -45,8 +94,8 @@
             </a>
             <ul class="treeview-menu">
                 <li class="{{ Request::is('user/manageUser*') ? 'active' : '' }}"><a href="{{ route('user') }}"><i class="fa fa-circle-o"></i>  User</a></li>
-                <li class="{{ Request::is('user/role*') ? 'active' : '' }}"><a href="{{ route('role') }}"><i class="fa fa-circle-o"></i>  Role</a></li>
-                <li class="{{ Request::is('user/manageRole_user*') ? 'active' : '' }}"><a href="{{ route('role_user') }}"><i class="fa fa-circle-o"></i>  Role_User</a></li>
+                {{--  <li class="{{ Request::is('user/role*') ? 'active' : '' }}"><a href="{{ route('role') }}"><i class="fa fa-circle-o"></i>  Role</a></li>  --}}
+                {{--  <li class="{{ Request::is('user/manageRole_user*') ? 'active' : '' }}"><a href="{{ route('role_user') }}"><i class="fa fa-circle-o"></i>  Role_User</a></li>  --}}
             </ul>
         </li>
         @endcan
@@ -269,42 +318,6 @@
         </li>
         @endif
 
-
-        <li class="{{ Request::is('product*') ? 'active' : '' }}">
-            <a href="{{ route('product') }}">
-              <i class="fa fa-archive"></i> <span>Product</span>
-            </a>
-        </li>
-
-        <li class="{{ Request::is('stock_real_time*') ? 'active' : '' }}">
-            <a href="{{ route('stock_real_time') }}">
-              <i class="fa fa-inbox"></i> <span>Stock</span>
-            </a>
-        </li>
-
-        <li class="{{ Request::is('transfer_in_not_approve*') ? 'active' : '' }}">
-            <a href="{{ route('transfer_in') }}">
-              <i class="fa fa-sign-in"></i> <span>Transfer In</span>
-            </a>
-        </li>
-
-        <li class="{{ Request::is('transfer_in_approve*') ? 'active' : '' }}">
-            <a href="{{ route('transfer_in_approve') }}">
-              <i class="fa fa-check-square"></i> <span>Transfer In Approved</span>
-            </a>
-        </li>
-
-        <li class="{{ Request::is('transfer_out_not_approve*') ? 'active' : '' }}">
-            <a href="{{ route('transfer_out') }}">
-              <i class="fa fa-sign-out"></i> <span>Transfer Out</span>
-            </a>
-        </li>
-
-        <li class="{{ Request::is('transfer_out_approve*') ? 'active' : '' }}">
-            <a href="{{ route('transfer_out_approve') }}">
-              <i class="fa fa-check-square-o"></i> <span>Transfer Out Approved</span>
-            </a>
-        </li>
 {{--
         <li class="treeview">
           <a href="#">

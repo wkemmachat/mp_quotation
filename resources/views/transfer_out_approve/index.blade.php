@@ -45,7 +45,7 @@
                         <h3 class="box-title">List Data <strong><font color='red'>NOT CONFIRMED</font></strong></h3>
                     </div>
 
-                    <div class="box-body">
+                    <div class="box-body table-responsive">
                         <table class="table table-responsive">
                             <thead>
                                 <tr>
@@ -53,6 +53,7 @@
                                     <th class="text-center">Product Id</th>
                                     <th class="text-center">Product Name</th>
                                     <th class="text-center">Amount</th>
+                                    <th class="text-center">Type</th>
                                     <th class="text-center">Document Id</th>
                                     <th class="text-center">Created Date / วันที่</th>
                                     {{--  <th class="text-center">Name / ผู้ทำงาน</th>  --}}
@@ -94,6 +95,7 @@
                                         <td>{{ $transfer_out_without_confirmed[$i]->product_running->productId }}</td>
                                         <td>{{ $transfer_out_without_confirmed[$i]->product_running->productName }}</td>
                                         <td class="text-center">{{ $transfer_out_without_confirmed[$i]->amount}}</td>
+                                        <td class="text-center">{{ $transfer_out_without_confirmed[$i]->out_type}}</td>
                                         <td class="text-center"><font color="blue">{{ $transfer_out_without_confirmed[$i]->document_reference_id }}</font></td>
                                         <td class="text-center">{{ date('d-M-Y',strtotime($transfer_out_without_confirmed[$i]->input_date)) }}</td>
                                         {{--  <td class="text-center">{{ $transfer_out_without_confirmed[$i]->user_key_in->name }}</td>  --}}
@@ -145,7 +147,7 @@
                         <h3 class="box-title">List Data <strong><font color='green'>CONFIRMED</font></strong></h3>
                     </div>
 
-                    <div class="box-body">
+                    <div class="box-body table-responsive">
                         <table class="table table-responsive">
                             <thead>
                                 <tr>
@@ -153,6 +155,7 @@
                                     <th class="text-center">Product Id</th>
                                     <th class="text-center">Product Name</th>
                                     <th class="text-center">Amount</th>
+                                    <th class="text-center">Type</th>
                                     <th class="text-center">Document Id</th>
                                     <th class="text-center">Created Date / วันที่</th>
                                     <th class="text-center">Name / ผู้ทำงาน</th>
@@ -187,6 +190,7 @@
                                         <td>{{ $transfer_out_confirmed[$i]->product_running->productId }}</td>
                                         <td>{{ $transfer_out_confirmed[$i]->product_running->productName }}</td>
                                         <td class="text-center">{{ $transfer_out_confirmed[$i]->amount}}</td>
+                                        <td class="text-center">{{ $transfer_out_confirmed[$i]->out_type}}</td>
                                         <td class="text-center"><font color="blue">{{ $transfer_out_confirmed[$i]->document_reference_id }}</font></td>
                                         <td class="text-center">{{ date('d-M-Y',strtotime($transfer_out_confirmed[$i]->input_date)) }}</td>
                                         <td class="text-center">{{ $transfer_out_confirmed[$i]->user_key_in->name }}</td>
