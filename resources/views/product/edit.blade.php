@@ -61,7 +61,7 @@
 
 
                                     <div class="form-group">
-                                            <label>Product Id :</label>
+                                            <label>Product Id : <font color="red">*</font></label>
 
                                             <div class="input-group ">
                                                 <div class="input-group-addon">
@@ -79,7 +79,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                            <label>Product Name :</label>
+                                            <label>Product Name : <font color="red">*</font></label>
 
                                             <div class="input-group ">
                                                 <div class="input-group-addon">
@@ -97,7 +97,35 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Product Category :</label>
+                                        <label>Minimun : <font color="red">*</font></label>
+
+                                        <div class="input-group ">
+                                            <div class="input-group-addon">
+                                            <i class="fa fa-sort-amount-asc"></i>
+                                            </div>
+                                            <input type="text" name="min" value="{{ ($productSelected->min > 0)? $productSelected->min : "" }}" maxlength="20" class="form-control pull-right plus_only" >
+                                        </div>
+
+                                        @if ($errors->has('min'))
+                                            <span class="text-red" role="alert">
+                                                <strong>{{ $errors->first('min') }}</strong>
+                                            </span>
+                                        @endif
+                                        <!-- /.input group -->
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Active : <font color="red">*</font></label>
+                                        <div class="form-group has-feedback">
+                                            <select name="active" class="form-control select2" placeholder="Active">
+                                                <option value="1" {{ ($productSelected->active == 1)?"selected":"" }}>ACTIVE</option>
+                                                <option value="0" {{ ($productSelected->active == 0)?"selected":"" }}>INACTIVE</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Product Category : <font color="red">*</font></label>
                                         <div class="form-group has-feedback">
                                             <select name="productCategory_running_Id" class="form-control select2" placeholder="USER_TYPE">
                                                 @foreach ($categories as $categoriesInLoop)

@@ -51,7 +51,7 @@
                                             <label>Product: <font color="red">*</font></label>
 
                                             <select name="product_running_id_search" class="form-control select2 "  >
-                                                <option value=""> -- Please Select Product -- </option>
+                                                {{-- <option value=""> -- Please Select Product -- </option> --}}
                                                 @foreach ($productAll as $product)
                                                     <option value="{{ $product->id }}">{{ $product->productId }} : {{ $product->productName }}</option>
                                                 @endforeach
@@ -91,37 +91,43 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center">No.</th>
-                                        <th class="text-center">Product Id</th>
                                         <th class="text-center">Product Name</th>
-                                        <th class="text-center">Product Cat</th>
+                                        <th class="text-center">Total Balance</th>
                                         <th class="text-center">Inventory</th>
                                         <th class="text-center">Pending Delivery (MP)</th>
                                         <th class="text-center">Pending Delivery (FUR)</th>
                                         <th class="text-center">Pending Delivery (OFF)</th>
                                         <th class="text-center">Balance</th>
                                         <th class="text-center">On P/O</th>
-                                        <th class="text-center">Total Balance</th>
+                                        <th class="text-center">Product Id</th>
+                                        <th class="text-center">Product Cat</th>
                                     </tr>
 
                                 </thead>
 
                                 <tbody>
                                     @php
-                                        $balance = $productSelected->stock_real_time->amount - $sumOutByProductMp - $sumOutByProductFur - $sumOutByProductOff;
-                                        $totalBalance = $balance + $sumInByProduct;
+                                        if($productSelected->stock_real_time==null){
+                                            $balance = 0;
+                                            $totalBalance = $sumInByProduct;
+                                        }else{
+                                            $balance = $productSelected->stock_real_time->amount - $sumOutByProductMp - $sumOutByProductFur - $sumOutByProductOff;
+                                            $totalBalance = $balance + $sumInByProduct;
+                                        }
+
                                     @endphp
                                         <tr>
                                             <td class="text-center">{{ 1 }}</td>
-                                            <td class="text-center">{{ $productSelected->productId }}</td>
                                             <td class="text-center">{{ $productSelected->productName }}</td>
-                                            <td class="text-center">{{ $productSelected->product_category->productCategoryId }}</td>
-                                            <td class="text-center">{{ $productSelected->stock_real_time->amount}}</td>
+                                            <td class="text-center">{{ $totalBalance }}</td>
+                                            <td class="text-center">{{ ($productSelected->stock_real_time==null)?"0":$productSelected->stock_real_time->amount}}</td>
                                             <td class="text-center">{{ $sumOutByProductMp }}</td>
                                             <td class="text-center">{{ $sumOutByProductFur }}</td>
                                             <td class="text-center">{{ $sumOutByProductOff }}</td>
                                             <td class="text-center">{{ $balance }}</td>
                                             <td class="text-center">{{ $sumInByProduct }}</td>
-                                            <td class="text-center">{{ $totalBalance }}</td>
+                                            <td class="text-center">{{ $productSelected->productId }}</td>
+                                            <td class="text-center">{{ $productSelected->product_category->productCategoryId }}</td>
                                         </tr>
                                     @php
 
@@ -157,7 +163,7 @@
                                             <label>Product Category: <font color="red">*</font></label>
 
                                             <select name="product_category_running_id_search" class="form-control select2 "  >
-                                                <option value=""> -- Please Select Product -- </option>
+                                                {{-- <option value=""> -- Please Select Product -- </option> --}}
                                                 @foreach ($productCategoryAll as $productCategoryInLoop)
                                                     <option value="{{ $productCategoryInLoop->id }}">{{ $productCategoryInLoop->productCategoryId }} : {{ $productCategoryInLoop->productCategoryName }}</option>
                                                 @endforeach
@@ -197,16 +203,16 @@
                             <thead>
                                 <tr>
                                     <th class="text-center">No.</th>
-                                    <th class="text-center">Product Id</th>
                                     <th class="text-center">Product Name</th>
-                                    <th class="text-center">Product Cat</th>
+                                    <th class="text-center">Total Balance</th>
                                     <th class="text-center">Inventory</th>
                                     <th class="text-center">Pending Delivery (MP)</th>
                                     <th class="text-center">Pending Delivery (FUR)</th>
                                     <th class="text-center">Pending Delivery (OFF)</th>
                                     <th class="text-center">Balance</th>
                                     <th class="text-center">On P/O</th>
-                                    <th class="text-center">Total Balance</th>
+                                    <th class="text-center">Product Id</th>
+                                    <th class="text-center">Product Cat</th>
                                 </tr>
 
                             </thead>
@@ -214,22 +220,28 @@
                             <tbody>
                                 @php
                                     for($i=0 ; $i<count($productArrayByProductCatId) ;$i++) {
-                                    $balance = $productArrayByProductCatId[$i]->stock_real_time->amount - $outWaitingArrayMp[$i] - $outWaitingArrayFur[$i] - $outWaitingArrayOff[$i];
-                                    $totalBalance = $balance + $inWaitingArray[$i];
+                                    if($productArrayByProductCatId[$i]->stock_real_time==null){
+                                        $balance = 0;
+                                        $totalBalance = $balance + $inWaitingArray[$i];
+                                    }else{
+                                        $balance = $productArrayByProductCatId[$i]->stock_real_time->amount - $outWaitingArrayMp[$i] - $outWaitingArrayFur[$i] - $outWaitingArrayOff[$i];
+                                        $totalBalance = $balance + $inWaitingArray[$i];
+                                    }
 
                                 @endphp
                                     <tr>
                                         <td class="text-center">{{ $i+1 }}</td>
-                                        <td class="text-center">{{ $productArrayByProductCatId[$i]->productId }}</td>
                                         <td class="text-center">{{ $productArrayByProductCatId[$i]->productName }}</td>
-                                        <td class="text-center">{{ $productArrayByProductCatId[$i]->product_category->productCategoryId }}</td>
-                                        <td class="text-center">{{ $productArrayByProductCatId[$i]->stock_real_time->amount}}</td>
+                                        <td class="text-center">{{ $totalBalance }}</td>
+                                        <td class="text-center">{{ ($productArrayByProductCatId[$i]->stock_real_time==null)?"0":$productArrayByProductCatId[$i]->stock_real_time->amount}}</td>
                                         <td class="text-center">{{ $outWaitingArrayMp[$i] }}</td>
                                         <td class="text-center">{{ $outWaitingArrayFur[$i] }}</td>
                                         <td class="text-center">{{ $outWaitingArrayOff[$i] }}</td>
                                         <td class="text-center">{{ $balance }}</td>
                                         <td class="text-center">{{ $inWaitingArray[$i] }}</td>
-                                        <td class="text-center">{{ $totalBalance }}</td>
+                                        <td class="text-center">{{ $productArrayByProductCatId[$i]->productId }}</td>
+                                        <td class="text-center">{{ $productArrayByProductCatId[$i]->product_category->productCategoryId }}</td>
+
                                     </tr>
                                 @php
                                     }

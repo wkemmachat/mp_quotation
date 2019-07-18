@@ -20,6 +20,8 @@ class CreateProductsTable extends Migration
             $table->string('productName')->nullable(false);
             $table->unsignedInteger('productCategoryRunning_id')->nullable(false);
             $table->string('remark')->default("");
+            $table->integer('min')->default(-1);
+            $table->boolean('active')->default(1);
             $table->timestamps();
         });
     }

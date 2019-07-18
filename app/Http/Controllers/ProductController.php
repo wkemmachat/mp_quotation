@@ -55,6 +55,8 @@ class ProductController extends Controller
             'productId' => 'required',
             'productName' => 'required',
             'productCategory_running_Id' =>'required',
+            'min' => 'required',
+            'active' => 'required',
         ]);
 
 
@@ -68,6 +70,8 @@ class ProductController extends Controller
         $productToBeSave->productId         = $request->productId;
         $productToBeSave->productName       = $request->productName;
         $productToBeSave->remark            = $request->remark;
+        $productToBeSave->min               = $request->min;
+        $productToBeSave->active            = $request->active;
         $productToBeSave->productCategoryRunning_id     = $request->productCategory_running_Id;
         $productToBeSave->save();
 
@@ -121,12 +125,16 @@ class ProductController extends Controller
             'productId' => 'required|max:255',
             'productName' => 'required|max:255',
             'productCategory_running_Id' =>'required',
+            'min' => 'required',
+            'active' => 'required',
         ]);
 
         // update
         $productSelected->productId     = $request['productId'];
         $productSelected->productName   = $request['productName'];
         $productSelected->remark        = $request['remark'];
+        $productSelected->min           = $request['min'];
+        $productSelected->active        = $request['active'];
         $productSelected->productCategoryRunning_id     = $request->productCategory_running_Id;
         $productSelected->save();
 

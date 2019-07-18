@@ -48,6 +48,7 @@
                                 <form action="{{route('product.store')}}" method="post">
                                     @csrf
 
+                                    <input type="hidden" name="active" value="1"/>
                                     {{-- <div class="form-group">
                                         <label>Date: <font color="red">*</font></label>
 
@@ -61,7 +62,7 @@
 
 
                                     <div class="form-group">
-                                            <label>Product Id :</label>
+                                            <label>Product Id : <font color="red">*</font></label>
 
                                             <div class="input-group ">
                                                 <div class="input-group-addon">
@@ -79,7 +80,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                            <label>Product Name :</label>
+                                            <label>Product Name : <font color="red">*</font></label>
 
                                             <div class="input-group ">
                                                 <div class="input-group-addon">
@@ -97,7 +98,25 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Product Category :</label>
+                                        <label>Minimun : <font color="red">*</font></label>
+
+                                        <div class="input-group ">
+                                            <div class="input-group-addon">
+                                            <i class="fa fa-sort-amount-asc"></i>
+                                            </div>
+                                            <input type="text" name="min" value="" maxlength="200" class="form-control pull-right plus_only" >
+                                        </div>
+
+                                        @if ($errors->has('min'))
+                                            <span class="text-red" role="alert">
+                                                <strong>{{ $errors->first('min') }}</strong>
+                                            </span>
+                                        @endif
+                                        <!-- /.input group -->
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Product Category : <font color="red">*</font></label>
                                         <div class="form-group has-feedback">
                                             <select name="productCategory_running_Id" class="form-control select2" placeholder="USER_TYPE">
                                                 @foreach ($categories as $categoriesInLoop)
@@ -167,6 +186,8 @@
                                     <th class="text-center">Product Id</th>
                                     <th class="text-center">Product Name</th>
                                     <th class="text-center">Product Cat</th>
+                                    <th class="text-center">Active</th>
+                                    <th class="text-center">Minimum</th>
                                     <th class="text-center">Updated Date / วันที่</th>
                                     {{--  <th class="text-center">Name / ผู้ทำงาน</th>  --}}
                                     <th class="text-center">Remark / หมายเหตุ</th>
@@ -177,11 +198,19 @@
 
                             <tbody>
                                 @foreach ($products as  $indexKey => $productInLoop)
+                                    @php
+                                        $showActiveOrNot = "<font color='red'>Inactive</font>";
+                                        if($productInLoop->active==1){
+                                            $showActiveOrNot = "<font color='blue'>Active</font>";
+                                        }
+                                    @endphp
                                 <tr>
                                     <td class="text-center">{{++$indexKey}}</td>
                                     <td class="text-center">{{ $productInLoop->productId }}</td>
                                     <td class="text-center">{{ $productInLoop->productName }}</td>
                                     <td class="text-center">{{ $productInLoop->product_category->productCategoryId }}</td>
+                                    <td class="text-center">{!! $showActiveOrNot !!}</td>
+                                    <td class="text-center">{{ $productInLoop->min }}</td>
                                     <td class="text-center">{{ date('d-M-Y',strtotime($productInLoop->created_at)) }}</td>
                                     {{-- <td class="text-center">{{ $productInLoop->created_at->format('d M Y') }}</td> --}}
                                     {{--  <td class="text-center">{{ $productInLoop->user_key_in->name }}</td>  --}}

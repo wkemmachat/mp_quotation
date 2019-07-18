@@ -57,7 +57,7 @@
                                     <th class="text-center">Created Date / วันที่</th>
                                     {{--  <th class="text-center">Name / ผู้ทำงาน</th>  --}}
 
-                                    <th class="text-center">Remark / หมายเหตุ</th>
+                                    <th class="text-center">หมายเลข Shipment</th>
                                     <th class="text-center">Confirmed</th>
                                     <th class="text-center">Delete</th>
                                 </tr>
@@ -156,7 +156,7 @@
                                     <th class="text-center">Document Id</th>
                                     <th class="text-center">Created Date / วันที่</th>
                                     <th class="text-center">Name / ผู้ทำงาน</th>
-                                    <th class="text-center">Remark / หมายเหตุ</th>
+                                    <th class="text-center">หมายเลข Shipment</th>
                                 </tr>
 
                             </thead>

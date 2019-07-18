@@ -26,15 +26,21 @@
     <tbody>
             @php
             for($i=0 ; $i<count($products) ;$i++) {
-                $balance = $products[$i]->stock_real_time->amount - $outWaitingArrayMp[$i] - $outWaitingArrayFur[$i] - $outWaitingArrayOff[$i];
-                $totalBalance = $balance + $inWaitingArrayOff[$i];
+                if($products[$i]->stock_real_time==null){
+                    $balance = 0;
+                    $totalBalance = $balance + $inWaitingArrayOff[$i];
+                }else{
+                    $balance = $products[$i]->stock_real_time->amount - $outWaitingArrayMp[$i] - $outWaitingArrayFur[$i] - $outWaitingArrayOff[$i];
+                    $totalBalance = $balance + $inWaitingArrayOff[$i];
+                }
+
             @endphp
             <tr>
                 <td>{{ $i+1 }}</td>
                 <td>{{ $products[$i]->productId }}</td>
                 <td>{{ $products[$i]->productName }}</td>
                 <td>{{ $products[$i]->product_category->productCategoryId }}</td>
-                <td>{{ $products[$i]->stock_real_time->amount}}</td>
+                <td>{{ ($products[$i]->stock_real_time==null)?"0":$products[$i]->stock_real_time->amount}}</td>
                 <td>{{ $outWaitingArrayMp[$i] }}</td>
                 <td>{{ $outWaitingArrayFur[$i] }}</td>
                 <td>{{ $outWaitingArrayOff[$i] }}</td>

@@ -8,6 +8,9 @@
             <th>User</th>
             <th>Created At</th>
             <th>Updated At</th>
+            <th>Minimum</th>
+            <th>Status</th>
+
         </tr>
     </thead>
     <tbody>
@@ -20,6 +23,8 @@
                 <td>{{ $item->user_key_in->name }}</td>
                 <td>{{ date('d-M-Y',strtotime($item->created_at)) }}</td>
                 <td>{{ date('d-M-Y',strtotime($item->updated_at)) }}</td>
+                <td>{{ $item->min }}</td>
+                <td>{{ ($item->active==1)?"Active":"Inactive" }}</td>
             </tr>
         @endforeach
     </tbody>

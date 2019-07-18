@@ -86,7 +86,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Type: <font color="red">*</font></label>
+                                            <label>ขายในนามบริษัท: <font color="red">*</font></label>
 
                                             <div class="input-group">
                                                 <div class="input-group-addon">
@@ -102,7 +102,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Remarks/หมายเหตุ :</label>
+                                            <label>หมายเลขเอกสาร :</label>
 
                                             <div class="input-group ">
                                                 <div class="input-group-addon">
@@ -236,7 +236,7 @@
                                     <th class="text-center">Created Date / วันที่</th>
                                     {{--  <th class="text-center">Name / ผู้ทำงาน</th>  --}}
 
-                                    <th class="text-center">Remark / หมายเหตุ</th>
+                                    <th class="text-center">หมายเลขเอกสาร</th>
                                     <th class="text-center">Confirmed</th>
                                     <th class="text-center">Delete</th>
                                 </tr>

@@ -40,25 +40,25 @@
 
         <li class="{{ Request::is('transfer_in_not_approve*') ? 'active' : '' }}">
             <a href="{{ route('transfer_in') }}">
-              <i class="fa fa-sign-in"></i> <span>Transfer In</span>
+              <i class="fa fa-sign-in"></i> <span>Transfer In / รับสินค้าเข้า</span>
             </a>
         </li>
 
         <li class="{{ Request::is('transfer_in_approve*') ? 'active' : '' }}">
             <a href="{{ route('transfer_in_approve') }}">
-              <i class="fa fa-check-square"></i> <span>Transfer In Approved</span>
+              <i class="fa fa-check-square"></i> <span>Transfer In Approved </span>
             </a>
         </li>
 
         <li class="{{ Request::is('transfer_out_not_approve*') ? 'active' : '' }}">
             <a href="{{ route('transfer_out') }}">
-              <i class="fa fa-sign-out"></i> <span>Transfer Out</span>
+              <i class="fa fa-sign-out"></i> <span>Transfer Out / ส่งสินค้าออก</span>
             </a>
         </li>
 
         <li class="{{ Request::is('transfer_out_approve*') ? 'active' : '' }}">
             <a href="{{ route('transfer_out_approve') }}">
-              <i class="fa fa-check-square-o"></i> <span>Transfer Out Approved</span>
+              <i class="fa fa-check-square-o"></i> <span>Transfer Out Approved </span>
             </a>
         </li>
         @endif
