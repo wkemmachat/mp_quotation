@@ -76,6 +76,12 @@
               <i class="fa fa-archive"></i> <span>Product</span>
             </a>
         </li>
+
+        <li class="{{ Request::is('upload*') ? 'active' : '' }}">
+            <a href="{{ route('upload') }}">
+              <i class="fa fa-archive"></i> <span>Upload</span>
+            </a>
+        </li>
         @endif
 
         {{--  <li class="{{ Request::is('dashboard*') ? 'active' : '' }}">

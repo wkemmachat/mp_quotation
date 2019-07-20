@@ -64,6 +64,10 @@ Route::get('/product/manageProduct', 'ProductController@index')->name('product')
 Route::get('/product/manageProduct/edit/{id}','ProductController@edit')->name('product.edit');
 Route::match(['put', 'patch'], '/product/manageProduct/update/{id}','ProductController@update')->name('product.update');
 
+// Upload
+Route::get('/upload', 'ProductController@upload_index')->name('upload');
+Route::post('/upload', 'ProductController@import')->name('product.import');
+
 // Transfer_In_not_Approved
 Route::post('/transfer_in_not_approve', 'TransferInOutController@store_in')->name('transfer_in.store_in');
 Route::get('/transfer_in_not_approve', 'TransferInOutController@index_in')->name('transfer_in');

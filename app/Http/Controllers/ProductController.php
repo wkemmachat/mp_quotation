@@ -10,6 +10,7 @@ use Kamaln7\Toastr\Facades\Toastr;
 use App\Exports\ExportProduct;
 use App\Exports\exportProductCollection;
 use App\Exports\exportProductCollectionQuery;
+use App\Imports\ProductsImport;
 use Carbon\Carbon;
 use App\Exports\ExportProductView;
 use App\ProductCategory;
@@ -244,5 +245,19 @@ class ProductController extends Controller
             ]
         ];
         return Excel::download(new ExportProductCollectionQuery($productArray), 'productcollection.xlsx');
+    }
+
+    public function import()
+    {
+        Excel::import(new ProductsImport,request()->file('file'));
+
+        return back();
+    }
+
+    public function upload_index()
+    {
+
+        return view('upload.index');
+
     }
 }
