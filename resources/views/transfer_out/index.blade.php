@@ -173,7 +173,10 @@
                                             <select name="product_running_id[]" class="form-control pull-right select2 input-medium" required >
                                                 <option value=""> -- Please Select Product -- </option>
                                                 @foreach ($products as $product)
-                                                    <option value="{{ $product->id }}">{{ $product->productId }} : {{ $product->productName }} , คงเหลือ {{ $product->stock_real_time->amount }} PCS</option>
+                                                    @if($product->stock_real_time != null && $product->stock_real_time->amount > 0){
+                                                            <option value="{{ $product->id }}">{{ $product->productId }} : {{ $product->productName }} , คงเหลือ {{ $product->stock_real_time->amount }} PCS</option>
+                                                        }
+                                                    @endif
                                                 @endforeach
                                             </select>
                                         </td>
@@ -317,6 +320,79 @@
         @endif
 
 
+        @if(!empty($transfer_out_confirmed))
+        <!-- List Data -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">List Data <strong><font color='green'>CONFIRMED</font></strong></h3>
+                    </div>
+
+                    <div class="box-body table-responsive">
+                        <table class="table table-responsive">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">No.</th>
+                                    <th class="text-center">Product Id</th>
+                                    <th class="text-center">Product Name</th>
+                                    <th class="text-center">Amount</th>
+                                    <th class="text-center">Type</th>
+                                    <th class="text-center">Document Id</th>
+                                    <th class="text-center">Created Date / วันที่</th>
+                                    <th class="text-center">Name / ผู้ทำงาน</th>
+                                    <th class="text-center">หมายเลขเอกสาร</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+                                <?php
+                                $uniqueDocRefId=array();
+                                for($i=0 ; $i<count($transfer_out_confirmed) ;$i++) {
+                                    $isDubplicate = false;
+                                    if($i!=0){
+                                        $uniqueDocRefId = array_unique($uniqueDocRefId);
+                                        $before = count($uniqueDocRefId);
+                                        array_push($uniqueDocRefId,$transfer_out_confirmed[$i]->document_reference_id);
+
+                                        $after  = count($uniqueDocRefId);
+
+                                        if($before != $after){
+                                            $isDubplicate = true;
+
+                                        }
+                                    }else{
+                                        array_push($uniqueDocRefId,$transfer_out_confirmed[$i]->document_reference_id);
+                                    }
+                                    $uniqueDocRefId = array_unique($uniqueDocRefId);
+                                ?>
+                                    <tr>
+                                        <td class="text-center">{{ $i+1 }}</td>
+                                        <td>{{ $transfer_out_confirmed[$i]->product_running->productId }}</td>
+                                        <td>{{ $transfer_out_confirmed[$i]->product_running->productName }}</td>
+                                        <td class="text-center">{{ $transfer_out_confirmed[$i]->amount}}</td>
+                                        <td class="text-center">{{ $transfer_out_confirmed[$i]->out_type}}</td>
+                                        <td class="text-center"><font color="blue">{{ $transfer_out_confirmed[$i]->document_reference_id }}</font></td>
+                                        <td class="text-center">{{ date('d-M-Y',strtotime($transfer_out_confirmed[$i]->input_date)) }}</td>
+                                        <td class="text-center">{{ $transfer_out_confirmed[$i]->user_key_in->name }}</td>
+                                        <td class="text-center">{{ $transfer_out_confirmed[$i]->remark }}</td>
+
+                                    </tr>
+                                <?php
+                                }
+                                ?>
+
+                            </tbody>
+
+
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        @endif
 
       <!-- /.box -->
 
@@ -346,7 +422,12 @@
                 parentData  += '<select name="product_running_id[]" class="form-control pull-right select2 input-medium" required >';
                 parentData  += '<option value=""> -- Please Select Product -- </option>';
                 parentData  += '@foreach ($products as $product)';
-                parentData  += '<option value="{{ $product->id }}">{{ $product->productId }} : {{ $product->productName }} , คงเหลือ {{ $product->stock_real_time->amount }} PCS</option>'
+
+                parentData  += '@if($product->stock_real_time != null && $product->stock_real_time->amount > 0){';
+                parentData  += '    <option value="{{ $product->id }}">{{ $product->productId }} : {{ $product->productName }} , คงเหลือ {{ $product->stock_real_time->amount }} PCS</option>';
+                parentData  += '}';
+                parentData  += '@endif';
+
                 parentData  += '@endforeach';
                 parentData  += '</select>';
                 parentData  += '</td>';

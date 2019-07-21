@@ -220,13 +220,18 @@
                             <tbody>
                                 @php
                                     for($i=0 ; $i<count($productArrayByProductCatId) ;$i++) {
-                                    if($productArrayByProductCatId[$i]->stock_real_time==null){
-                                        $balance = 0;
-                                        $totalBalance = $balance + $inWaitingArray[$i];
-                                    }else{
-                                        $balance = $productArrayByProductCatId[$i]->stock_real_time->amount - $outWaitingArrayMp[$i] - $outWaitingArrayFur[$i] - $outWaitingArrayOff[$i];
-                                        $totalBalance = $balance + $inWaitingArray[$i];
-                                    }
+
+                                        if($productArrayByProductCatId[$i]->stock_real_time==null){
+                                            $balance = 0;
+                                            $totalBalance = $balance + $inWaitingArray[$i];
+                                        }else{
+                                            $balance = $productArrayByProductCatId[$i]->stock_real_time->amount - $outWaitingArrayMp[$i] - $outWaitingArrayFur[$i] - $outWaitingArrayOff[$i];
+                                            $totalBalance = $balance + $inWaitingArray[$i];
+                                        }
+
+                                        if($productArrayByProductCatId[$i]->active==0){
+                                            continue;
+                                        }
 
                                 @endphp
                                     <tr>

@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    MP / Office In Trend
+                    Store/Inventory Program
                 </div>
 
 

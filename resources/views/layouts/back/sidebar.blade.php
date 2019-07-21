@@ -8,7 +8,7 @@
         </div>
         <div class="pull-left info">
           <p>{{ Auth::user()->name }} </p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          <a href="#"><i class="fa fa-circle åtext-success"></i> Online</a>
         </div>
       </div>
       <!-- search form -->
@@ -79,7 +79,7 @@
 
         <li class="{{ Request::is('upload*') ? 'active' : '' }}">
             <a href="{{ route('upload') }}">
-              <i class="fa fa-archive"></i> <span>Upload</span>
+              <i class="fa fa-cloud-upload"></i> <span>Upload</span>
             </a>
         </li>
         @endif

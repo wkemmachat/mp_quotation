@@ -39,7 +39,7 @@
             <!-- Default box -->
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Add <font color="blue"><strong> Products </strong></font> Data</h3>
+                            <h3 class="box-title">Upload <font color="blue"><strong> Products </strong></font> Data</h3>
                         </div>
 
                         <div class="box-body">
@@ -52,6 +52,9 @@
                                     <button class="btn btn-success">Import Product Data</button>
                                 </form>
 
+                                <font color = 'red'>
+                                    <br/> Please see the product structure in root folder (excel) before upload
+                                </font>
                             </div>
                         </div>
                     </div>

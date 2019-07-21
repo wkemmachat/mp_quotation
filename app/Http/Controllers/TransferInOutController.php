@@ -51,7 +51,8 @@ class TransferInOutController extends Controller
         $products = Product::orderBy('productId', 'asc')->get();
 
         $transfer_out_without_confirmed = TransferInOut::where('isConfirmed','=',0)->where('in_or_out','=','out')->orderby('id','asc')->get();
-        $transfer_out_confirmed = TransferInOut::where('isConfirmed','=',1)->where('in_or_out','=','out')->orderby('id','desc')->paginate(10);
+        $transfer_out_confirmed = TransferInOut::where('isConfirmed','=',1)->where('in_or_out','=','out')->orderby('id','desc')->limit(20)->get();
+
 
         return view('transfer_out.index',compact('products','now','transfer_out_without_confirmed','transfer_out_confirmed'));
     }
