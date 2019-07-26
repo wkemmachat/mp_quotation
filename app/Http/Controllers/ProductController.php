@@ -130,10 +130,14 @@ class ProductController extends Controller
             'active' => 'required',
         ]);
 
+        if($request->remark == null){
+            $request->remark = '';
+        }
+
         // update
         $productSelected->productId     = $request['productId'];
         $productSelected->productName   = $request['productName'];
-        $productSelected->remark        = $request['remark'];
+        $productSelected->remark        = $request->remark = '';
         $productSelected->min           = $request['min'];
         $productSelected->active        = $request['active'];
         $productSelected->productCategoryRunning_id     = $request->productCategory_running_Id;
