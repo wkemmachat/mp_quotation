@@ -165,7 +165,7 @@
                                                 @if(strlen($productSelected->imageName)>0)
                                                 <img id='blah' src="{{ URL::to('/') }}/images/{{ $productSelected->imageName }}" class="img-thumbnail" width="250" />
                                                 @else
-                                                <img src="{{ URL::to('/') }}/images/default_product.jpg" class="img-thumbnail" width="250" />
+                                                <img id='blah' src="{{ URL::to('/') }}/images/default_product.jpg" class="img-thumbnail" width="250" />
                                                 <font color='red'>No Image</font>
                                                 @endif
                                                 </td>
