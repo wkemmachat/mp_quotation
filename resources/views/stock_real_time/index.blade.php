@@ -92,13 +92,16 @@
                                     <tr>
                                         <th class="text-center">No.</th>
                                         <th class="text-center">Product Name</th>
-                                        <th class="text-center">Total Balance</th>
-                                        <th class="text-center">Inventory</th>
+                                        <th class="text-center">สินค้าคงเหลือที่ขายได้ (Balance)</th>
+                                        <th class="text-center">สินค้ารอเข้า (On P/O)</th>
                                         <th class="text-center">Pending Delivery (MP)</th>
                                         <th class="text-center">Pending Delivery (FUR)</th>
                                         <th class="text-center">Pending Delivery (OFF)</th>
-                                        <th class="text-center">Balance</th>
-                                        <th class="text-center">On P/O</th>
+                                        <th class="text-center">สินค้าคงเหลือ (รวมสินค้ารอจัดส่ง) Inventory</th>
+                                        <th class="text-center">สินค้าคงเหลือที่ขายได้จริง + สินค้ารอเข้า (Total Balance)</th>
+                                        @if(Auth::user()->user_type=='root')
+                                        <th class="text-center">Min</th>
+                                        @endif
                                         <th class="text-center">Product Id</th>
                                         <th class="text-center">Product Cat</th>
                                     </tr>
@@ -119,13 +122,16 @@
                                         <tr>
                                             <td class="text-center">{{ 1 }}</td>
                                             <td class="text-center">{{ $productSelected->productName }}</td>
-                                            <td class="text-center">{{ $totalBalance }}</td>
-                                            <td class="text-center">{{ ($productSelected->stock_real_time==null)?"0":$productSelected->stock_real_time->amount}}</td>
+                                            <td class="text-center">{{ $balance }}</td>
+                                            <td class="text-center">{{ $sumInByProduct }}</td>
                                             <td class="text-center">{{ $sumOutByProductMp }}</td>
                                             <td class="text-center">{{ $sumOutByProductFur }}</td>
                                             <td class="text-center">{{ $sumOutByProductOff }}</td>
-                                            <td class="text-center">{{ $balance }}</td>
-                                            <td class="text-center">{{ $sumInByProduct }}</td>
+                                            <td class="text-center">{{ ($productSelected->stock_real_time==null)?"0":$productSelected->stock_real_time->amount}}</td>
+                                            <td class="text-center">{{ $totalBalance }}</td>
+                                            @if(Auth::user()->user_type=='root')
+                                            <td class="text-center">{{ $productSelected->min }}</td>
+                                            @endif
                                             <td class="text-center">{{ $productSelected->productId }}</td>
                                             <td class="text-center">{{ $productSelected->product_category->productCategoryId }}</td>
                                         </tr>
@@ -204,13 +210,16 @@
                                 <tr>
                                     <th class="text-center">No.</th>
                                     <th class="text-center">Product Name</th>
-                                    <th class="text-center">Total Balance</th>
-                                    <th class="text-center">Inventory</th>
+                                    <th class="text-center">สินค้าคงเหลือที่ขายได้ (Balance)</th>
+                                    <th class="text-center">สินค้ารอเข้า (On P/O)</th>
                                     <th class="text-center">Pending Delivery (MP)</th>
                                     <th class="text-center">Pending Delivery (FUR)</th>
                                     <th class="text-center">Pending Delivery (OFF)</th>
-                                    <th class="text-center">Balance</th>
-                                    <th class="text-center">On P/O</th>
+                                    <th class="text-center">สินค้าคงเหลือ (รวมสินค้ารอจัดส่ง) Inventory</th>
+                                    <th class="text-center">สินค้าคงเหลือที่ขายได้จริง + สินค้ารอเข้า (Total Balance)</th>
+                                    @if(Auth::user()->user_type=='root')
+                                    <th class="text-center">Min</th>
+                                    @endif
                                     <th class="text-center">Product Id</th>
                                     <th class="text-center">Product Cat</th>
                                 </tr>
@@ -237,13 +246,16 @@
                                     <tr>
                                         <td class="text-center">{{ $i+1 }}</td>
                                         <td class="text-center">{{ $productArrayByProductCatId[$i]->productName }}</td>
-                                        <td class="text-center">{{ $totalBalance }}</td>
-                                        <td class="text-center">{{ ($productArrayByProductCatId[$i]->stock_real_time==null)?"0":$productArrayByProductCatId[$i]->stock_real_time->amount}}</td>
+                                        <td class="text-center">{{ $balance }}</td>
+                                        <td class="text-center">{{ $inWaitingArray[$i] }}</td>
                                         <td class="text-center">{{ $outWaitingArrayMp[$i] }}</td>
                                         <td class="text-center">{{ $outWaitingArrayFur[$i] }}</td>
                                         <td class="text-center">{{ $outWaitingArrayOff[$i] }}</td>
-                                        <td class="text-center">{{ $balance }}</td>
-                                        <td class="text-center">{{ $inWaitingArray[$i] }}</td>
+                                        <td class="text-center">{{ ($productArrayByProductCatId[$i]->stock_real_time==null)?"0":$productArrayByProductCatId[$i]->stock_real_time->amount}}</td>
+                                        <td class="text-center">{{ $totalBalance }}</td>
+                                        @if(Auth::user()->user_type=='root')
+                                            <td class="text-center">{{ $productArrayByProductCatId[$i]->min }}</td>
+                                        @endif
                                         <td class="text-center">{{ $productArrayByProductCatId[$i]->productId }}</td>
                                         <td class="text-center">{{ $productArrayByProductCatId[$i]->product_category->productCategoryId }}</td>
 

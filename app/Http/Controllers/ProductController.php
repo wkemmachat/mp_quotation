@@ -14,6 +14,7 @@ use App\Imports\ProductsImport;
 use Carbon\Carbon;
 use App\Exports\ExportProductView;
 use App\ProductCategory;
+use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
 {
@@ -58,12 +59,23 @@ class ProductController extends Controller
             'productCategory_running_Id' =>'required',
             'min' => 'required',
             'active' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
 
         if($request->remark == null){
             $request->remark = '';
         }
+
+        $image = $request->file('image');
+        if($image!=null){
+            $new_name = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images'), $new_name);
+        }else{
+            $new_name = '';
+        }
+
+        // dd($new_name);
         // save
         $productToBeSave = new Product();
         // $productToBeSave->input_date        = Carbon::createFromFormat('d-m-Y', $request->date_input)->format('Y-m-d');
@@ -74,6 +86,7 @@ class ProductController extends Controller
         $productToBeSave->min               = $request->min;
         $productToBeSave->active            = $request->active;
         $productToBeSave->productCategoryRunning_id     = $request->productCategory_running_Id;
+        $productToBeSave->imageName         = $new_name;
         $productToBeSave->save();
 
         $products = Product::orderBy('updated_at', 'desc')->paginate(10);
@@ -128,15 +141,42 @@ class ProductController extends Controller
             'productCategory_running_Id' =>'required',
             'min' => 'required',
             'active' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
+        // update image
+        $image = $request->file('image');
+        if($image!=null){
+
+
+            $image_path = "images/".$productSelected->imageName;  // Value is not URL but directory file path
+            // dd($image_path);
+            if(file_exists($image_path)) {
+                // dd("true");
+                File::delete($image_path);
+            }
+
+            // $image->delete(public_path('images'), $productSelected->imageName);
+
+            $new_name = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images'), $new_name);
+
+        }else{
+            $new_name = '';
+        }
+
+        if($request->remark == null){
+            $request->remark = '';
+        }
 
         // update
         $productSelected->productId     = $request['productId'];
         $productSelected->productName   = $request['productName'];
-        $productSelected->remark        = $request['remark'];
+        $productSelected->remark        = $request->remark = '';
         $productSelected->min           = $request['min'];
         $productSelected->active        = $request['active'];
         $productSelected->productCategoryRunning_id     = $request->productCategory_running_Id;
+        $productSelected->imageName     = $new_name;
         $productSelected->save();
 
         $products = Product::orderBy('updated_at', 'desc')->paginate(10);

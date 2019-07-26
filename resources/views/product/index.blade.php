@@ -45,7 +45,7 @@
                         <div class="box-body">
                             <div class="register-box-body">
 
-                                <form action="{{route('product.store')}}" method="post">
+                                <form action="{{route('product.store')}}" method="post" enctype="multipart/form-data">
                                     @csrf
 
                                     <input type="hidden" name="active" value="1"/>
@@ -144,6 +144,21 @@
                                         <!-- /.input group -->
                                     </div>
 
+                                    <div class="form-group">
+                                        <label>Image/รูปภาพ :</label>
+
+                                        <input type="file" name="image" value="" id="imgInp">
+                                        <p class="help-block">Only .jpg, .jpeg, .png, max 2048 Bytes</p>
+                                        @if ($errors->has('image'))
+                                            <span class="text-red" role="alert">
+                                                <strong>{{ $errors->first('image') }}</strong>
+                                            </span>
+                                        @endif
+
+                                        <img id='blah' src="{{ URL::to('/') }}/images/default_product.jpg" class="img-thumbnail" width="250" />
+                                        <!-- /.input group -->
+                                    </div>
+
                                     <div class="row">
                                         <div class="col-xs-8">
                                             {{--  <div class="checkbox icheck">
@@ -183,6 +198,7 @@
                             <thead>
                                 <tr>
                                     <th class="text-center">No.</th>
+                                    <th class="text-center">Pic</th>
                                     <th class="text-center">Product Id</th>
                                     <th class="text-center">Product Name</th>
                                     <th class="text-center">Product Cat</th>
@@ -206,6 +222,14 @@
                                     @endphp
                                 <tr>
                                     <td class="text-center">{{++$indexKey}}</td>
+                                    <td class="text-center">
+                                        @if(strlen($productInLoop->imageName)>0)
+                                        <img src="{{ URL::to('/') }}/images/{{ $productInLoop->imageName }}" class="img-thumbnail" width="100" />
+                                        @else
+                                        {{--  <img src="{{ URL::to('/') }}/images/default_product.jpg" class="img-thumbnail" width="100" />  --}}
+                                        -
+                                        @endif
+                                    </td>
                                     <td class="text-center">{{ $productInLoop->productId }}</td>
                                     <td class="text-center">{{ $productInLoop->productName }}</td>
                                     <td class="text-center">{{ $productInLoop->product_category->productCategoryId }}</td>
@@ -379,5 +403,23 @@
 @endsection
 
 
+@section('js')
+<script type="text/javascript">
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+        var reader = new FileReader();
 
+        reader.onload = function(e) {
+            $('#blah').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#imgInp").change(function() {
+        readURL(this);
+    });
+</script>
+@endsection
 

@@ -45,7 +45,7 @@
                         <div class="box-body">
                             <div class="register-box-body">
 
-                                <form action="{{route('product.update',$productSelected->id)}}" method="post">
+                                <form action="{{route('product.update',$productSelected->id)}}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     @method('PATCH')
                                     {{-- <div class="form-group">
@@ -156,6 +156,35 @@
                                         <!-- /.input group -->
                                     </div>
 
+                                    <div class="form-group">
+                                        <label>Image/รูปภาพ :</label>
+
+                                        <table width="100%" height="100%" align="center" valign="center">
+                                            <tr>
+                                                <td>
+                                                @if(strlen($productSelected->imageName)>0)
+                                                <img id='blah' src="{{ URL::to('/') }}/images/{{ $productSelected->imageName }}" class="img-thumbnail" width="250" />
+                                                @else
+                                                <img src="{{ URL::to('/') }}/images/default_product.jpg" class="img-thumbnail" width="250" />
+                                                <font color='red'>No Image</font>
+                                                @endif
+                                                </td>
+                                            </tr>
+                                        </table>
+
+
+                                        <br/>
+                                        <input type="file" name="image" value="" id="imgInp" >
+
+                                        <p class="help-block">Only .jpg, .jpeg, .png, max 2048 Bytes</p>
+                                        @if ($errors->has('image'))
+                                            <span class="text-red" role="alert">
+                                                <strong>{{ $errors->first('image') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+
+
                                     <div class="row">
                                         <div class="col-xs-8">
                                             {{--  <div class="checkbox icheck">
@@ -197,5 +226,23 @@
 @endsection
 
 
+@section('js')
+<script type="text/javascript">
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+        var reader = new FileReader();
 
+        reader.onload = function(e) {
+            $('#blah').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#imgInp").change(function() {
+        readURL(this);
+    });
+</script>
+@endsection
 

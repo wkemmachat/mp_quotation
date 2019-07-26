@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     protected $fillable = [ 'remark','productId','productName'
-                            ,'user_key_in_id','productCategoryRunning_id','active','min'  ];
+                            ,'user_key_in_id','productCategoryRunning_id','active','min','imageName'  ];
 
     // protected $dates = ['input_date'];
 
