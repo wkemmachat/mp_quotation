@@ -37,7 +37,7 @@
 
 
         <!-- Search By Min -->
-
+            @if(Auth::user()->user_type=='root')
             <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                     <!-- Default box -->
@@ -78,6 +78,7 @@
                             </div>
                     </div>
             </div>
+            @endif
 
             @if(!empty($productArrayByMin))
             <!-- List Data -->
