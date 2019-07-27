@@ -103,7 +103,7 @@
                                             <div class="input-group-addon">
                                             <i class="fa fa-sort-amount-asc"></i>
                                             </div>
-                                            <input type="text" name="min" value="{{ ($productSelected->min > 0)? $productSelected->min : "" }}" maxlength="20" class="form-control pull-right plus_only" >
+                                            <input type="text" name="min" value="{{ ($productSelected->min > 0)? $productSelected->min : 0 }}" maxlength="20" class="form-control pull-right plus_only" >
                                         </div>
 
                                         @if ($errors->has('min'))

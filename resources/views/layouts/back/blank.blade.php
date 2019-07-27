@@ -26,6 +26,11 @@
 
   <!-- Select2 -->
   <link rel="stylesheet" href="{{asset('adminlte/bower_components/select2/dist/css/select2.min.css')}}">
+
+  <!-- Fancy Box-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+
   @yield('css')
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -61,6 +66,10 @@
     <script src="{{asset('adminlte/plugins/input-mask/jquery.inputmask.js')}}"></script>
     <script src="{{asset('adminlte/plugins/input-mask/jquery.inputmask.date.extensions.js')}}"></script>
     <script src="{{asset('adminlte/plugins/input-mask/jquery.inputmask.extensions.js')}}"></script>
+
+    <!-- Fancy Box -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
 
     <script>
 

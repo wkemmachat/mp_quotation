@@ -89,6 +89,66 @@ class StockRealTimeController extends Controller
         $productAll = Product::orderBy('productId', 'asc')->get();
         return view('stock_real_time.index',compact('productAll','productArrayByProductCatId','productCategoryAll','outWaitingArrayMp','outWaitingArrayFur','outWaitingArrayOff','inWaitingArray'));
     }
+
+    public function searchMinProduct(Request $request)
+    {
+
+
+        $productArrayActive = Product::where('active','=',1)->orderBy('productId', 'asc')->get();
+        // dd($productArrayActive);
+        $productArrayByMin      = array();
+        $outWaitingArrayMp      = array();
+        $outWaitingArrayFur     = array();
+        $outWaitingArrayOff     = array();
+        $inWaitingArray         = array();
+
+        for($i=0 ; $i<count($productArrayActive) ;$i++) {
+
+            $sumOutByProductMp = TransferInOut::where('product_running_id','=',$productArrayActive[$i]->id)->where('isConfirmed','=',0)
+            ->where('in_or_out','=','out')->where('out_type','=','mp')->sum('amount');
+
+            $sumOutByProductFur = TransferInOut::where('product_running_id','=',$productArrayActive[$i]->id)->where('isConfirmed','=',0)
+            ->where('in_or_out','=','out')->where('out_type','=','fur')->sum('amount');
+
+            $sumOutByProductOff = TransferInOut::where('product_running_id','=',$productArrayActive[$i]->id)->where('isConfirmed','=',0)
+            ->where('in_or_out','=','out')->where('out_type','=','off')->sum('amount');
+
+            $sumInByProduct = TransferInOut::where('product_running_id','=',$productArrayActive[$i]->id)->where('isConfirmed','=',0)
+            ->where('in_or_out','=','in')->sum('amount');
+
+            if($productArrayActive[$i]->stock_real_time==null){
+                $balance = 0;
+                $totalBalance = $sumInByProduct;
+            }else{
+                $balance = $productArrayActive[$i]->stock_real_time->amount - $sumOutByProductMp - $sumOutByProductFur - $sumOutByProductOff;
+                $totalBalance = $balance + $sumInByProduct;
+            }
+            if($productArrayActive[$i]->min > $totalBalance){
+
+                array_push($productArrayByMin,$productArrayActive[$i]);
+                array_push($outWaitingArrayMp,$sumOutByProductMp);
+                array_push($outWaitingArrayFur,$sumOutByProductFur);
+                array_push($outWaitingArrayOff,$sumOutByProductOff);
+                array_push($inWaitingArray,$sumInByProduct);
+
+            }
+
+            // array_push($outWaitingArrayMp,$sumOutByProductMp);
+            // array_push($outWaitingArrayFur,$sumOutByProductFur);
+            // array_push($outWaitingArrayOff,$sumOutByProductOff);
+            // array_push($inWaitingArray,$sumInByProduct);
+
+            // dd($products[$i]->id);
+            // dd($outByProductOff);
+        }
+
+
+
+
+        $productCategoryAll = ProductCategory::orderBy('productCategoryId','asc')->get();
+        $productAll = Product::orderBy('productId', 'asc')->get();
+        return view('stock_real_time.index',compact('productAll','productArrayByMin','productCategoryAll','outWaitingArrayMp','outWaitingArrayFur','outWaitingArrayOff','inWaitingArray'));
+    }
     /**
      * Show the form for creating a new resource.
      *

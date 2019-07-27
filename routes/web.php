@@ -90,6 +90,7 @@ Route::get('/transfer_out_approve', 'TransferInOutController@index_out_approve')
 Route::get('/stock_real_time', 'StockRealTimeController@index')->name('stock_real_time');
 Route::post('/stock_real_time_search_by_product_id', 'StockRealTimeController@searchByProductId')->name('stock_real_time.searchByProductId');
 Route::post('/stock_real_time_search_by_category_id', 'StockRealTimeController@searchByCategoryId')->name('stock_real_time.searchByCategoryId');
+Route::post('/stock_real_time_search_min', 'StockRealTimeController@searchMinProduct')->name('stock_real_time.searchMinProduct');
 
 
 // Route::get('/transfer_in/edit/{id}','ProductController@edit')->name('transfer_in.edit');

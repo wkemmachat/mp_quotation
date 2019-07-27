@@ -224,7 +224,9 @@
                                     <td class="text-center">{{++$indexKey}}</td>
                                     <td class="text-center">
                                         @if(strlen($productInLoop->imageName)>0)
-                                        <img src="{{ URL::to('/') }}/images/{{ $productInLoop->imageName }}" class="img-thumbnail" width="100" />
+                                            <a href="{{ URL::to('/') }}/images/{{ $productInLoop->imageName }}" data-fancybox data-caption="{{ $productInLoop->productName }}">
+                                                <img src="{{ URL::to('/') }}/images/{{ $productInLoop->imageName }}" class="img-thumbnail" width="100" />
+                                            </a>
                                         @else
                                         {{--  <img src="{{ URL::to('/') }}/images/default_product.jpg" class="img-thumbnail" width="100" />  --}}
                                         -
