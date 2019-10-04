@@ -1,7 +1,7 @@
 Change git url 
 
 git remote -v 
-git remote set-url origin https://github.com/wkemmachat/mp_kpi_stock_kem.git
+git remote set-url origin https://github.com/wkemmachat/mp_quotation.git
 change
 
 
