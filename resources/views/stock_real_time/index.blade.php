@@ -451,7 +451,7 @@
                         <div class="box-body">
                             <div class="register-box-body">
                                 <!-- <form action="{{ route('stock.exportStock')}}" method="post"> -->
-                                <form action="{{ route('phpExport.index')}}" method="post" target="_blank">
+                                <form action="{{ route('phpExport.index_type2')}}" method="post" target="_blank">
                                     @csrf
                                     <div class="row">
                                         <div class="col-xs-8">

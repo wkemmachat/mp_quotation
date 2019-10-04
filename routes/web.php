@@ -117,6 +117,8 @@ Route::post('/exportProductView', 'ProductController@exportProductView')->name('
 Route::post('/exportTransferInOut', 'TransferInOutController@exportTransferInOut')->name('transfer.exportTransferInOut');
 Route::post('/exportStock', 'StockRealTimeController@exportStock')->name('stock.exportStock');
 Route::post('/exportTestPHP', 'PhpSpreadSheetController@index')->name('phpExport.index');
+Route::post('/exportTestPHPType', 'PhpSpreadSheetController@index_type')->name('phpExport.index_type');
+Route::post('/exportTestPHPType2', 'PhpSpreadSheetController@index_type2')->name('phpExport.index_type2');
 
 
 // KemLogin
