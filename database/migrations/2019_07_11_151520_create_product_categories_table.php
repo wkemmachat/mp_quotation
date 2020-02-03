@@ -20,6 +20,7 @@ class CreateProductCategoriesTable extends Migration
             $table->string('remark')->default("");
             $table->unsignedInteger('user_key_in_id');
             $table->timestamps();
+            $table->unsignedInteger('parent_id')->nullable();
         });
     }
 

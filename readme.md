@@ -41,3 +41,12 @@ php artisan make:model TransferInOut -mcr
 #tinker
 php artisan tinker
 App\Product::find(1)->stock_real_time;
+
+#Multiple Sub cat 
+https://www.5balloons.info/hierarchical-data-laravel-relationship-display/
+
+#tinker
+ProductCategory::where('parent_id',NULL)->get();
+
+$cat = App\ProductCategory::find(22);
+$cat = App\ProductCategory::find(22)->has_parent;

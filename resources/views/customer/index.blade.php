@@ -2,7 +2,7 @@
 
 
 @section('title')
-    Product Category
+    Customer
 @endsection
 
 @section('content')
@@ -22,7 +22,7 @@
     @endif
     <section class="content-header">
         <h1>
-            Product Category
+            Customer
             <small>Add/Edit/List Data</small>
         </h1>
         {{--  <ol class="breadcrumb">
@@ -39,48 +39,156 @@
             <!-- Default box -->
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Add <font color="blue"><strong><font color="green"> Main</font> Product Category</strong></font> Data</h3>
+                        <h3 class="box-title">Add <font color="blue"><strong> Customer</strong></font> Data</h3>
                     </div>
 
                     <div class="box-body">
                         <div class="register-box-body">
 
-                            <form action="{{route('category.store')}}" method="post">
+                            <form action="{{route('customer.store')}}" method="post">
                                 @csrf
                                 <div class="form-group">
-                                        <label>Product Category Id :</label>
+                                        <label>Customer Name :<font color="red"> *</font></label>
 
                                         <div class="input-group ">
                                             <div class="input-group-addon">
                                             <i class="fa fa-archive"></i>
                                             </div>
-                                            <input type="text" name="productCategoryId" value="" maxlength="200" class="form-control pull-right" >
+                                            <input type="text" name="customerName" value="" maxlength="100" class="form-control pull-right" >
                                         </div>
 
-                                        @if ($errors->has('productCategoryId'))
+                                        @if ($errors->has('customerName'))
                                             <span class="text-red" role="alert">
-                                                <strong>{{ $errors->first('productCategoryId') }}</strong>
+                                                <strong>{{ $errors->first('customerName') }}</strong>
                                             </span>
                                         @endif
                                         <!-- /.input group -->
                                 </div>
 
                                 <div class="form-group">
-                                        <label>Product Category Name :</label>
+                                        <label>customer Address 1 : <font color="red"> *</font></label>
 
                                         <div class="input-group ">
                                             <div class="input-group-addon">
                                             <i class="fa fa-sticky-note-o"></i>
                                             </div>
-                                            <input type="text" name="productCategoryName" value="" maxlength="200" class="form-control pull-right" >
+                                            <input type="text" name="customerAddress1" value="" maxlength="50" class="form-control pull-right" >
                                         </div>
 
-                                        @if ($errors->has('productCategoryName'))
+                                        @if ($errors->has('customerAddress1'))
                                             <span class="text-red" role="alert">
-                                                <strong>{{ $errors->first('productCategoryName') }}</strong>
+                                                <strong>{{ $errors->first('customerAddress1') }}</strong>
                                             </span>
                                         @endif
                                         <!-- /.input group -->
+                                </div>
+
+                                <div class="form-group">
+                                    <label>customer Address 2 :</label>
+
+                                    <div class="input-group ">
+                                        <div class="input-group-addon">
+                                        <i class="fa fa-sticky-note-o"></i>
+                                        </div>
+                                        <input type="text" name="customerAddress2" value="" maxlength="50" class="form-control pull-right" >
+                                    </div>
+
+                                    @if ($errors->has('customerAddress2'))
+                                        <span class="text-red" role="alert">
+                                            <strong>{{ $errors->first('customerAddress2') }}</strong>
+                                        </span>
+                                    @endif
+                                    <!-- /.input group -->
+                                </div>
+
+                                <div class="form-group">
+                                    <label>customer Address 3 :</label>
+
+                                    <div class="input-group ">
+                                        <div class="input-group-addon">
+                                        <i class="fa fa-sticky-note-o"></i>
+                                        </div>
+                                        <input type="text" name="customerAddress3" value="" maxlength="50" class="form-control pull-right" >
+                                    </div>
+
+                                    @if ($errors->has('customerAddress3'))
+                                        <span class="text-red" role="alert">
+                                            <strong>{{ $errors->first('customerAddress3') }}</strong>
+                                        </span>
+                                    @endif
+                                    <!-- /.input group -->
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Customer's Contact Person: <font color="red"> *</font></label>
+
+                                    <div class="input-group ">
+                                        <div class="input-group-addon">
+                                        <i class="fa fa-male"></i>
+                                        </div>
+                                        <input type="text" name="customerContactPerson" value="" maxlength="50" class="form-control pull-right" >
+                                    </div>
+
+                                    @if ($errors->has('customerContactPerson'))
+                                        <span class="text-red" role="alert">
+                                            <strong>{{ $errors->first('customerContactPerson') }}</strong>
+                                        </span>
+                                    @endif
+                                    <!-- /.input group -->
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Customer's Tax Id:</label>
+
+                                    <div class="input-group ">
+                                        <div class="input-group-addon">
+                                        <i class="fa fa-credit-card"></i>
+                                        </div>
+                                        <input type="text" name="customerTaxId" value="" maxlength="50" class="form-control pull-right" >
+                                    </div>
+
+                                    @if ($errors->has('customerTaxId'))
+                                        <span class="text-red" role="alert">
+                                            <strong>{{ $errors->first('customerTaxId') }}</strong>
+                                        </span>
+                                    @endif
+                                    <!-- /.input group -->
+                                </div>
+
+                                <div class="form-group">
+                                    <label>customer's Tel: <font color="red"> *</font></label>
+
+                                    <div class="input-group ">
+                                        <div class="input-group-addon">
+                                        <i class="fa fa-phone"></i>
+                                        </div>
+                                        <input type="text" name="customerTel" value="" maxlength="50" class="form-control pull-right" >
+                                    </div>
+
+                                    @if ($errors->has('customerTel'))
+                                        <span class="text-red" role="alert">
+                                            <strong>{{ $errors->first('customerTel') }}</strong>
+                                        </span>
+                                    @endif
+                                    <!-- /.input group -->
+                                </div>
+
+                                <div class="form-group">
+                                    <label>customer's EMail:</label>
+
+                                    <div class="input-group ">
+                                        <div class="input-group-addon">
+                                        <i class="fa fa-envelope"></i>
+                                        </div>
+                                        <input type="text" name="customerMail" value="" maxlength="50" class="form-control pull-right" >
+                                    </div>
+
+                                    @if ($errors->has('customerMail'))
+                                        <span class="text-red" role="alert">
+                                            <strong>{{ $errors->first('customerMail') }}</strong>
+                                        </span>
+                                    @endif
+                                    <!-- /.input group -->
                                 </div>
 
                                 <div class="form-group">
@@ -126,7 +234,7 @@
 
 
 
-        @if(!empty($categories))
+        @if(!empty($customers))
         <!-- List Data -->
         <div class="row">
             <div class="col-md-12">
@@ -135,44 +243,39 @@
                         <h3 class="box-title">List Data</h3>
                     </div>
 
+
                     <div class="box-body">
                         {{-- <table class="table table-responsive"> --}}
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th class="text-center">No.</th>
-                                    <th class="text-center">Category Id</th>
-                                    <th class="text-center">Category Name</th>
-                                    <th class="text-center">Updated Date / วันที่</th>
-                                    <th class="text-center">Name / ผู้ทำงาน</th>
-                                    <th class="text-center">Remark / หมายเหตุ</th>
-                                    <th class="text-center">Parent Name</th>
-                                    <th class="text-center">Add Sub / Edit</th>
+                                    <th class="text-center">Customer Running Id</th>
+                                    <th class="text-center">Customer Name</th>
+                                    <th class="text-center">Customer Address 1</th>
+                                    <th class="text-center">Customer Contact Person</th>
+                                    <th class="text-center">Updated Date </th>
+                                    <th class="text-center">Remark </th>
+                                    <th class="text-center">View/Edit</th>
                                 </tr>
 
                             </thead>
 
                             <tbody>
-                                @foreach ($categories as  $indexKey => $categoriesInLoop)
+                                @foreach ($customers as  $indexKey => $customerInLoop)
                                 <tr>
                                     <td class="text-center">{{++$indexKey}}</td>
-                                    <td class="text-center">{{ $categoriesInLoop->productCategoryId }}</td>
-                                    <td class="text-center">{{ $categoriesInLoop->productCategoryName }}</td>
-                                    <td class="text-center">{{ date('d-M-Y',strtotime($categoriesInLoop->updated_at)) }}</td>
-                                    {{-- <td class="text-center">{{ $productInLoop->created_at->format('d M Y') }}</td> --}}
-                                    <td class="text-center">{{ $categoriesInLoop->user_key_in->name }}</td>
-                                    <td class="text-center">{{ $categoriesInLoop->remark }}</td>
-                                    <td class="text-center">{{ $categoriesInLoop->has_parent==null?"":  $categoriesInLoop->has_parent->productCategoryName}}</td>
+                                    <td class="text-center">{{ $customerInLoop->id }}</td>
+                                    <td class="text-center">{{ $customerInLoop->customerName }}</td>
+                                    <td class="text-center">{{ $customerInLoop->customerAddress1 }}</td>
+                                    <td class="text-center">{{ $customerInLoop->customerContactPerson }}</td>
+                                    <td class="text-center">{{ date('d-M-Y',strtotime($customerInLoop->updated_at)) }}</td>
+                                    {{-- <td class="text-center">{{ $customerInLoop->user_key_in->name }}</td> --}}
+                                    <td class="text-center">{{ $customerInLoop->remark }}</td>
                                     <td class="text-center">
-                                        {{-- <a href="{{ route('kpi_output.delete',$kpi_outputInLoop->id) }}" class="btn btn-block btn-danger">Delete<a> --}}
-                                        {{-- <form class="form-delete" method="post" action="{{ route('kpi_output.delete', [$roleSelected->title]) }}">
-                                            @method('DELETE')
-                                            @csrf
-                                            <input type="hidden" name="kpi_delete_id" value="{{ $kpi_outputInLoop->id }}"/>
-                                            <button type="submit" class="btn btn-block btn-danger" onclick="return confirm('Are you sure?')">x</button>
-                                        </form> --}}
-                                        <a href="{{ route('category.add_sub_index',$categoriesInLoop->id) }}" class="btn  btn-primary">Add Sub<a>
-                                        <a href="{{ route('category.edit',$categoriesInLoop->id) }}" class="btn  btn-warning">Edit<a>
+
+                                        {{-- <a href="{{ route('category.add_sub_index',$categoriesInLoop->id) }}" class="btn  btn-primary">Add Sub<a> --}}
+                                        <a href="{{ route('customer.edit',$customerInLoop->id) }}" class="btn  btn-warning">Edit<a>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -188,24 +291,6 @@
         </div>
 
 
-        <!-- // Test Method -->
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header"><strong>List All Categories</strong></div>
-                    <div class="card-body">
-                        @foreach($main_categories as $category)
-                            <ul>
-                                <li><font color="blue">{{$category->productCategoryName}}</font></li>
-                                @if(count($category->subcategory))
-                                    @include('product_category.subCategoryList',['subcategories' => $category->subcategory])
-                                @endif
-                            </ul>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        </div>
 
 
         {{-- <div class="row justify-content-center">

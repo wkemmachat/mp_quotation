@@ -124,7 +124,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
+                                    {{-- <div class="form-group">
                                         <label>Product Category : <font color="red">*</font></label>
                                         <div class="form-group has-feedback">
                                             <select name="productCategory_running_Id" class="form-control select2" placeholder="USER_TYPE">
@@ -136,7 +136,59 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> --}}
+
+                                    <div class="form-group">
+                                            <label>Product Category : <font color="red">*</font></label>
+                                            <div class="form-group has-feedback">
+                                                <select name="productCategory_running_Id" class="form-control select2" placeholder="USER_TYPE">
+
+                                                    <!-- main loop -->
+                                                    @foreach ($categories as $mainCat)
+                                                        <option value="{{ $mainCat->id }}" {{ ($mainCat->id==$productSelected->product_category->id)?" selected ":"" }}> {{ $mainCat->productCategoryId }} : {{ $mainCat->productCategoryName }} </span></option>
+
+                                                            <!-- Sub 1 -->
+                                                            @foreach ($mainCat->subcategory as $subCat1)
+                                                                <option value="{{ $subCat1->id }}" {{ ($subCat1->id==$productSelected->product_category->id)?" selected ":"" }}>   - {{ $subCat1->productCategoryId }} : {{ $subCat1->productCategoryName }}</option>
+
+                                                                <!-- Sub 2 -->
+                                                                @foreach ($subCat1->subcategory as $subCat2)
+                                                                    <option value="{{ $subCat2->id }}" {{ ($subCat2->id==$productSelected->product_category->id)?" selected ":"" }}>   -&nbsp;- {{ $subCat2->productCategoryId }} : {{ $subCat2->productCategoryName }}</option>
+
+                                                                    <!-- Sub 3 -->
+                                                                    @foreach ($subCat2->subcategory as $subCat3)
+                                                                        <option value="{{ $subCat3->id }}" {{ ($subCat3->id==$productSelected->product_category->id)?" selected ":"" }}>   -&nbsp;-&nbsp;- {{ $subCat3->productCategoryId }} : {{ $subCat3->productCategoryName }}</option>
+
+                                                                        <!-- Sub 4 -->
+                                                                        @foreach ($subCat3->subcategory as $subCat4)
+                                                                            <option value="{{ $subCat4->id }}" {{ ($subCat4->id==$productSelected->product_category->id)?" selected ":"" }}>   -&nbsp;-&nbsp;-&nbsp;- {{ $subCat4->productCategoryId }} : {{ $subCat4->productCategoryName }}</option>
+
+                                                                            <!-- Sub 5 -->
+                                                                            @foreach ($subCat4->subcategory as $subCat5)
+                                                                            <option value="{{ $subCat5->id }}" {{ ($subCat5->id==$productSelected->product_category->id)?" selected ":"" }}>   -&nbsp;-&nbsp;-&nbsp;-&nbsp;- {{ $subCat5->productCategoryId }} : {{ $subCat5->productCategoryName }}</option>
+                                                                            <!-- end foreach Sub 5 -->
+                                                                            @endforeach
+
+                                                                        <!-- end foreach Sub 4 -->
+                                                                        @endforeach
+
+                                                                    <!-- end foreach Sub 3 -->
+                                                                    @endforeach
+
+                                                                <!-- End foreach Sub 2-->
+                                                                @endforeach
+
+                                                            <!-- end foreach Sub 1 -->
+                                                            @endforeach
+
+                                                    <!-- end Main loop -->
+                                                    @endforeach
+
+
+
+                                                </select>
+                                            </div>
+                                        </div>
 
                                     <div class="form-group">
                                         <label>Remarks/หมายเหตุ :</label>

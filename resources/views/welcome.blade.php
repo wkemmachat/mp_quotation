@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Store/Inventory Program
+                    Quotation Program
                 </div>
 
 

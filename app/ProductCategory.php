@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ProductCategory extends Model
 {
     protected $fillable = [ 'remark','productCategoryId','productCategoryName'
-                            ,'user_key_in_id'  ];
+                            ,'user_key_in_id','parent_id'  ];
 
     // protected $dates = ['input_date'];
 
@@ -17,6 +17,14 @@ class ProductCategory extends Model
 
     public function products() {
         return $this->hasMany(Product::class,'productCategoryRunning_id');
+    }
+
+    public function subcategory(){
+        return $this->hasMany(ProductCategory::class, 'parent_id');
+    }
+
+    public function has_parent(){
+        return $this->belongsTo(ProductCategory::class, 'parent_id');
     }
 
 }

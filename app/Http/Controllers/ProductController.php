@@ -23,7 +23,8 @@ class ProductController extends Controller
     {
         // $kpi_outputs = KpiOutput::where('role_id','=',$roleSelected->id)->orderBy('updated_at', 'desc')->paginate(10);
         $products = Product::orderBy('updated_at', 'desc')->paginate(10);
-        $categories = ProductCategory::all();
+        // $categories = ProductCategory::all();
+        $categories = ProductCategory::where('parent_id',NULL)->get();
         // return view('kpi.index',compact('roleSelected','usersHaveRoleArray','kpi_outputs'));
         return view('product.index',compact('products','categories'));
     }
@@ -76,7 +77,7 @@ class ProductController extends Controller
         $productToBeSave->imageName         = $new_name;
         $productToBeSave->save();
         $products = Product::orderBy('updated_at', 'desc')->paginate(10);
-        $categories = ProductCategory::all();
+        $categories = ProductCategory::where('parent_id',NULL)->get();
         $message = "Successfully add data";
         Toastr::success($message, $title = "Successfully Action", $options = []);
         return view('product.index',compact('products','categories'));
@@ -101,7 +102,7 @@ class ProductController extends Controller
     {
         // dd($id);
         $productSelected = Product::findOrFail($id);
-        $categories = ProductCategory::all();
+        $categories = ProductCategory::where('parent_id',NULL)->get();
         // dd($categories);
         // dd($userSelected);
         // $users = User::all();
@@ -137,8 +138,10 @@ class ProductController extends Controller
             // $image->delete(public_path('images'), $productSelected->imageName);
             $new_name = time() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('images'), $new_name);
+
+            $productSelected->imageName     = $new_name;
         }else{
-            $new_name = '';
+            // $new_name = '';
         }
         if($request->remark == null){
             $request->remark = '';
@@ -150,10 +153,10 @@ class ProductController extends Controller
         $productSelected->min           = $request['min'];
         $productSelected->active        = $request['active'];
         $productSelected->productCategoryRunning_id     = $request->productCategory_running_Id;
-        $productSelected->imageName     = $new_name;
+
         $productSelected->save();
         $products = Product::orderBy('updated_at', 'desc')->paginate(10);
-        $categories = ProductCategory::all();
+        $categories = ProductCategory::where('parent_id',NULL)->get();
         $message = "Successfully add data";
         Toastr::success($message, $title = "Successfully Action", $options = []);
         return view('product.index',compact('products','categories'));

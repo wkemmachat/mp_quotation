@@ -82,7 +82,20 @@
               <i class="fa fa-cloud-upload"></i> <span>Upload</span>
             </a>
         </li>
+
+        <li class="{{ Request::is('customer*') ? 'active' : '' }}">
+            <a href="{{ route('customer') }}">
+              <i class="fa fa-user-plus"></i> <span>Customer</span>
+            </a>
+        </li>
+
         @endif
+
+        <li class="{{ Request::is('quotation*') ? 'active' : '' }}">
+            <a href="{{ route('quotation') }}">
+              <i class="fa fa-building-o"></i> <span>Quotation</span>
+            </a>
+        </li>
 
         {{--  <li class="{{ Request::is('dashboard*') ? 'active' : '' }}">
             <a href="{{ route('dashboard') }}">

@@ -104,7 +104,7 @@
                                             <div class="input-group-addon">
                                             <i class="fa fa-sort-amount-asc"></i>
                                             </div>
-                                            <input type="text" name="min" value="" maxlength="200" class="form-control pull-right plus_only" >
+                                            <input type="text" name="min" value="" maxlength="20" class="form-control pull-right plus_only" >
                                         </div>
 
                                         @if ($errors->has('min'))
@@ -119,26 +119,175 @@
                                         <label>Product Category : <font color="red">*</font></label>
                                         <div class="form-group has-feedback">
                                             <select name="productCategory_running_Id" class="form-control select2" placeholder="USER_TYPE">
-                                                @foreach ($categories as $categoriesInLoop)
-                                                    <option value="{{ $categoriesInLoop->id }}">{{ $categoriesInLoop->productCategoryId }} : {{ $categoriesInLoop->productCategoryName }}</option>
+
+                                                <!-- main loop -->
+                                                @foreach ($categories as $mainCat)
+                                                    <option value="{{ $mainCat->id }}"> <span style="color:red; !important;">{{ $mainCat->productCategoryId }} : {{ $mainCat->productCategoryName }} </span></option>
+
+                                                        <!-- Sub 1 -->
+                                                        @foreach ($mainCat->subcategory as $subCat1)
+                                                            <option value="{{ $subCat1->id }}">   - {{ $subCat1->productCategoryId }} : {{ $subCat1->productCategoryName }}</option>
+
+                                                            <!-- Sub 2 -->
+                                                            @foreach ($subCat1->subcategory as $subCat2)
+                                                                <option value="{{ $subCat2->id }}">   -&nbsp;- {{ $subCat2->productCategoryId }} : {{ $subCat2->productCategoryName }}</option>
+
+                                                                <!-- Sub 3 -->
+                                                                @foreach ($subCat2->subcategory as $subCat3)
+                                                                    <option value="{{ $subCat3->id }}">   -&nbsp;-&nbsp;- {{ $subCat3->productCategoryId }} : {{ $subCat3->productCategoryName }}</option>
+
+                                                                    <!-- Sub 4 -->
+                                                                    @foreach ($subCat3->subcategory as $subCat4)
+                                                                        <option value="{{ $subCat4->id }}">   -&nbsp;-&nbsp;-&nbsp;- {{ $subCat4->productCategoryId }} : {{ $subCat4->productCategoryName }}</option>
+
+                                                                        <!-- Sub 5 -->
+                                                                        @foreach ($subCat4->subcategory as $subCat5)
+                                                                        <option value="{{ $subCat5->id }}">   -&nbsp;-&nbsp;-&nbsp;-&nbsp;- {{ $subCat5->productCategoryId }} : {{ $subCat5->productCategoryName }}</option>
+                                                                        <!-- end foreach Sub 5 -->
+                                                                        @endforeach
+
+                                                                    <!-- end foreach Sub 4 -->
+                                                                    @endforeach
+
+                                                                <!-- end foreach Sub 3 -->
+                                                                @endforeach
+
+                                                            <!-- End foreach Sub 2-->
+                                                            @endforeach
+
+                                                        <!-- end foreach Sub 1 -->
+                                                        @endforeach
+
+                                                <!-- end Main loop -->
                                                 @endforeach
+
+
+
                                             </select>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Remarks/หมายเหตุ :</label>
+                                        <label>Standard price :</label>
 
                                         <div class="input-group ">
                                             <div class="input-group-addon">
-                                            <i class="fa fa-sticky-note"></i>
+                                            <i class="fa fa-dollar"></i>
                                             </div>
-                                            <input type="text" name="remark" value="" maxlength="200" class="form-control pull-right" >
+                                            <input type="text" name="std_price" value="" maxlength="20" class="form-control pull-right decimal_only" >
                                         </div>
 
-                                        @if ($errors->has('remark'))
+                                        @if ($errors->has('std_price'))
                                             <span class="text-red" role="alert">
-                                                <strong>{{ $errors->first('remark') }}</strong>
+                                                <strong>{{ $errors->first('std_price') }}</strong>
+                                            </span>
+                                        @endif
+                                        <!-- /.input group -->
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Description 1 :</label>
+
+                                        <div class="input-group ">
+                                            <div class="input-group-addon">
+                                            <i class="fa fa-sticky-note-o"></i>
+                                            </div>
+                                            <input type="text" name="desc1" value="" maxlength="50" class="form-control pull-right" >
+                                        </div>
+
+                                        @if ($errors->has('desc1'))
+                                            <span class="text-red" role="alert">
+                                                <strong>{{ $errors->first('desc1') }}</strong>
+                                            </span>
+                                        @endif
+                                        <!-- /.input group -->
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Description 2 :</label>
+
+                                        <div class="input-group ">
+                                            <div class="input-group-addon">
+                                            <i class="fa fa-sticky-note-o"></i>
+                                            </div>
+                                            <input type="text" name="desc2" value="" maxlength="50" class="form-control pull-right" >
+                                        </div>
+
+                                        @if ($errors->has('desc2'))
+                                            <span class="text-red" role="alert">
+                                                <strong>{{ $errors->first('desc2') }}</strong>
+                                            </span>
+                                        @endif
+                                        <!-- /.input group -->
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Description 3 :</label>
+
+                                        <div class="input-group ">
+                                            <div class="input-group-addon">
+                                            <i class="fa fa-sticky-note-o"></i>
+                                            </div>
+                                            <input type="text" name="desc3" value="" maxlength="50" class="form-control pull-right" >
+                                        </div>
+
+                                        @if ($errors->has('desc3'))
+                                            <span class="text-red" role="alert">
+                                                <strong>{{ $errors->first('desc3') }}</strong>
+                                            </span>
+                                        @endif
+                                        <!-- /.input group -->
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Description 4 :</label>
+
+                                        <div class="input-group ">
+                                            <div class="input-group-addon">
+                                            <i class="fa fa-sticky-note-o"></i>
+                                            </div>
+                                            <input type="text" name="desc4" value="" maxlength="50" class="form-control pull-right" >
+                                        </div>
+
+                                        @if ($errors->has('desc4'))
+                                            <span class="text-red" role="alert">
+                                                <strong>{{ $errors->first('desc4') }}</strong>
+                                            </span>
+                                        @endif
+                                        <!-- /.input group -->
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Description 5 :</label>
+
+                                        <div class="input-group ">
+                                            <div class="input-group-addon">
+                                            <i class="fa fa-sticky-note-o"></i>
+                                            </div>
+                                            <input type="text" name="desc5" value="" maxlength="50" class="form-control pull-right" >
+                                        </div>
+
+                                        @if ($errors->has('desc5'))
+                                            <span class="text-red" role="alert">
+                                                <strong>{{ $errors->first('desc5') }}</strong>
+                                            </span>
+                                        @endif
+                                        <!-- /.input group -->
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Description 6 :</label>
+
+                                        <div class="input-group ">
+                                            <div class="input-group-addon">
+                                            <i class="fa fa-sticky-note-o"></i>
+                                            </div>
+                                            <input type="text" name="desc6" value="" maxlength="50" class="form-control pull-right" >
+                                        </div>
+
+                                        @if ($errors->has('desc6'))
+                                            <span class="text-red" role="alert">
+                                                <strong>{{ $errors->first('desc6') }}</strong>
                                             </span>
                                         @endif
                                         <!-- /.input group -->

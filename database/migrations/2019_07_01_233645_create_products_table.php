@@ -24,6 +24,13 @@ class CreateProductsTable extends Migration
             $table->integer('min')->default(-1);
             $table->boolean('active')->default(1);
             $table->timestamps();
+            $table->string('desc1')->default("");
+            $table->string('desc2')->default("");
+            $table->string('desc3')->default("");
+            $table->string('desc4')->default("");
+            $table->string('desc5')->default("");
+            $table->string('desc6')->default("");
+            $table->double('std_price', 8, 2)->default('0.00');
         });
     }
 

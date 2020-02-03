@@ -101,6 +101,20 @@ Route::get('/category', 'ProductCategoryController@index')->name('category');
 Route::post('/category', 'ProductCategoryController@store')->name('category.store');
 Route::get('/category/edit/{id}','ProductCategoryController@edit')->name('category.edit');
 Route::match(['put', 'patch'], '/category/update/{id}','ProductCategoryController@update')->name('category.update');
+Route::get('/category_add_sub/{id}', 'ProductCategoryController@add_sub_index')->name('category.add_sub_index');
+Route::post('/category_add_sub', 'ProductCategoryController@add_sub_store')->name('category.add_sub_store');
+
+// customer
+Route::get('/customer', 'CustomerController@index')->name('customer');
+Route::post('/customer', 'CustomerController@store')->name('customer.store');
+Route::get('/customer/edit/{id}','CustomerController@edit')->name('customer.edit');
+Route::match(['put', 'patch'], '/customer/update/{id}','CustomerController@update')->name('customer.update');
+
+// Quotation
+Route::get('/quotation', 'QuotationController@index')->name('quotation');
+Route::post('/quotation', 'QuotationController@store')->name('quotation.store');
+Route::get('/quotation/edit/{id}','QuotationController@edit')->name('quotation.edit');
+Route::match(['put', 'patch'], '/quotation/update/{id}','QuotationController@update')->name('quotation.update');
 
 
 // KPI
