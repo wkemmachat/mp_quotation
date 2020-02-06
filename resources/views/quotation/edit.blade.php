@@ -33,9 +33,10 @@
     </section>
 
     <!-- Main content -->
+    <!-- onSubmit="return confirm('Are you sure you want to edit?');" -->
     <section class="content">
         {{--  <div class="row">  --}}
-        <form action="{{ route('quotation.update',$quotationMainSelected->id)}}" onSubmit="return confirm('Are you sure you want to edit?');">
+        <form action="{{ route('quotation.update',$quotationMainSelected->id)}}" method="post" onSubmit="return confirm('Are you sure you want to edit?');" >
             @csrf
             @method('PATCH')
             {{-- <input type="hidden" name="in_or_out" value="in" maxlength="10" class="form-control pull-right" > --}}
@@ -121,7 +122,8 @@
                                                 <div class="input-group-addon">
                                                 <i class="fa fa-sticky-note"></i>
                                                 </div>
-                                            <input type="text" name="PI_number" disabled value="{{$quotationMainSelected->PI_number}}" maxlength="20" class="form-control pull-right" >
+                                            <input type="text"  disabled value="{{$quotationMainSelected->PI_number}}" maxlength="20" class="form-control pull-right" >
+                                            <input type="hidden" name="PI_number"  value="{{$quotationMainSelected->PI_number}}" maxlength="20" class="form-control pull-right" >
 
                                                 {{-- <input type="text" name="PI_number" disabled value="IN-{{ $now->format('d-m-Y-H-i-s') }}" maxlength="100" class="form-control pull-right" > --}}
                                                 {{-- <input type="hidden" name="document_reference_id" value="IN-{{ $now->format('d-m-Y-H-i-s') }}" maxlength="100" class="form-control pull-right" > --}}
@@ -420,7 +422,7 @@
                                     <tr>
                                         <td class="text-center">{{$key+1}}</td>
                                         <td>
-                                            <select name="product_running_id[]" disabled class="form-control pull-right select2 input-medium" required >
+                                            <select name="product_running_id[]" class="form-control pull-right select2 input-medium" required >
                                                 <option value=""> -- Please Select Product -- </option>
                                                 @foreach ($products as $product)
                                                     <option value="{{ $product->id }}"

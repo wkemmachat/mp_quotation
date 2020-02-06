@@ -25,6 +25,7 @@ class CreateQuotationMainsTable extends Migration
             $table->string('depositPercentOrValue')->nullable(false); // ex percent
             $table->double('depositAmountPercentOrValue', 8, 2)->default('0.00'); // ex 50 mean deposite 50%
             $table->string('remarkInPI')->default('');
+            $table->string('ref_PI_number')->default('');
 
             $table->timestamps();
         });
