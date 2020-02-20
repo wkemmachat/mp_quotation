@@ -29,14 +29,14 @@
 
         <!-- only Sales -->
 
-        <li class="{{ Request::is('stock_real_time*') ? 'active' : '' }}">
+        {{-- <li class="{{ Request::is('stock_real_time*') ? 'active' : '' }}">
             <a href="{{ route('stock_real_time') }}">
               <i class="fa fa-inbox"></i> <span>Stock</span>
             </a>
-        </li>
+        </li> --}}
 
 
-        @if(Auth::user()->user_type=='root'||Auth::user()->user_type=='admin')
+        {{-- @if(Auth::user()->user_type=='root'||Auth::user()->user_type=='admin')
 
         <li class="{{ Request::is('transfer_in_not_approve*') ? 'active' : '' }}">
             <a href="{{ route('transfer_in') }}">
@@ -61,7 +61,7 @@
               <i class="fa fa-check-square-o"></i> <span>Transfer Out Approved </span>
             </a>
         </li>
-        @endif
+        @endif --}}
 
         @if(Auth::user()->user_type=='root')
 

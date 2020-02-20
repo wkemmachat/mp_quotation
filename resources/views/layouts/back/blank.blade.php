@@ -143,7 +143,7 @@
 
 
 </head>
-<body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
+<body class="hold-transition skin-green-light sidebar-mini sidebar-collapse">
 <!-- Site wrapper -->
 <div class="wrapper">
 
