@@ -56,6 +56,30 @@ class ProductController extends Controller
         if($request->remark == null){
             $request->remark = '';
         }
+
+        if($request->desc1 == null){
+            $request->desc1 = '';
+        }
+        if($request->desc2 == null){
+            $request->desc2 = '';
+        }
+        if($request->desc3 == null){
+            $request->desc3 = '';
+        }
+        if($request->desc4 == null){
+            $request->desc4 = '';
+        }
+        if($request->desc5 == null){
+            $request->desc5 = '';
+        }
+        if($request->desc6 == null){
+            $request->desc6 = '';
+        }
+
+        if($request->std_price == null){
+            $request->std_price = 0;
+        }
+
         $image = $request->file('image');
         if($image!=null){
             $new_name = time() . '.' . $image->getClientOriginalExtension();
@@ -75,6 +99,17 @@ class ProductController extends Controller
         $productToBeSave->active            = $request->active;
         $productToBeSave->productCategoryRunning_id     = $request->productCategory_running_Id;
         $productToBeSave->imageName         = $new_name;
+
+        $productToBeSave->desc1             = $request->desc1;
+        $productToBeSave->desc2             = $request->desc2;
+        $productToBeSave->desc3             = $request->desc3;
+        $productToBeSave->desc4             = $request->desc4;
+        $productToBeSave->desc5             = $request->desc5;
+        $productToBeSave->desc6             = $request->desc6;
+
+        $productToBeSave->std_price             = $request->std_price;
+
+
         $productToBeSave->save();
         $products = Product::orderBy('updated_at', 'desc')->paginate(10);
         $categories = ProductCategory::where('parent_id',NULL)->get();
@@ -146,13 +181,45 @@ class ProductController extends Controller
         if($request->remark == null){
             $request->remark = '';
         }
+
+        if($request->desc1 == null){
+            $request->desc1 = '';
+        }
+        if($request->desc2 == null){
+            $request->desc2 = '';
+        }
+        if($request->desc3 == null){
+            $request->desc3 = '';
+        }
+        if($request->desc4 == null){
+            $request->desc4 = '';
+        }
+        if($request->desc5 == null){
+            $request->desc5 = '';
+        }
+        if($request->desc6 == null){
+            $request->desc6 = '';
+        }
+
+        if($request->std_price == null){
+            $request->std_price = 0;
+        }
+
         // update
         $productSelected->productId     = $request['productId'];
         $productSelected->productName   = $request['productName'];
-        $productSelected->remark        = $request->remark = '';
+        $productSelected->remark        = $request->remark;
         $productSelected->min           = $request['min'];
         $productSelected->active        = $request['active'];
         $productSelected->productCategoryRunning_id     = $request->productCategory_running_Id;
+
+        $productSelected->desc1             = $request->desc1;
+        $productSelected->desc2             = $request->desc2;
+        $productSelected->desc3             = $request->desc3;
+        $productSelected->desc4             = $request->desc4;
+        $productSelected->desc5             = $request->desc5;
+        $productSelected->desc6             = $request->desc6;
+        $productSelected->std_price         = $request->std_price;
 
         $productSelected->save();
         $products = Product::orderBy('updated_at', 'desc')->paginate(10);

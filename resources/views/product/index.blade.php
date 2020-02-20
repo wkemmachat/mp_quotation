@@ -294,6 +294,24 @@
                                     </div>
 
                                     <div class="form-group">
+                                        <label>Remark :</label>
+
+                                        <div class="input-group ">
+                                            <div class="input-group-addon">
+                                            <i class="fa fa-sticky-note-o"></i>
+                                            </div>
+                                            <input type="text" name="remark" value="" maxlength="100" class="form-control pull-right" >
+                                        </div>
+
+                                        @if ($errors->has('remark'))
+                                            <span class="text-red" role="alert">
+                                                <strong>{{ $errors->first('remark') }}</strong>
+                                            </span>
+                                        @endif
+                                        <!-- /.input group -->
+                                    </div>
+
+                                    <div class="form-group">
                                         <label>Image/รูปภาพ :</label>
 
                                         <input type="file" name="image" value="" id="imgInp">

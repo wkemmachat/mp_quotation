@@ -190,14 +190,141 @@
                                             </div>
                                         </div>
 
+
                                     <div class="form-group">
-                                        <label>Remarks/หมายเหตุ :</label>
+                                        <label>Standard price :</label>
 
                                         <div class="input-group ">
                                             <div class="input-group-addon">
-                                            <i class="fa fa-sticky-note"></i>
+                                            <i class="fa fa-dollar"></i>
                                             </div>
-                                            <input type="text" name="remark" value="{{ $productSelected->remark }}" maxlength="200" class="form-control pull-right" >
+                                            <input type="text" name="std_price" value="{{ $productSelected->std_price }}" maxlength="20" class="form-control pull-right decimal_only" >
+                                        </div>
+
+                                        @if ($errors->has('std_price'))
+                                            <span class="text-red" role="alert">
+                                                <strong>{{ $errors->first('std_price') }}</strong>
+                                            </span>
+                                        @endif
+                                        <!-- /.input group -->
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Description 1 :</label>
+
+                                        <div class="input-group ">
+                                            <div class="input-group-addon">
+                                            <i class="fa fa-sticky-note-o"></i>
+                                            </div>
+                                            <input type="text" name="desc1" value="{{ $productSelected->desc1 }}" maxlength="50" class="form-control pull-right" >
+                                        </div>
+
+                                        @if ($errors->has('desc1'))
+                                            <span class="text-red" role="alert">
+                                                <strong>{{ $errors->first('desc1') }}</strong>
+                                            </span>
+                                        @endif
+                                        <!-- /.input group -->
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Description 2 :</label>
+
+                                        <div class="input-group ">
+                                            <div class="input-group-addon">
+                                            <i class="fa fa-sticky-note-o"></i>
+                                            </div>
+                                            <input type="text" name="desc2" value="{{ $productSelected->desc2 }}" maxlength="50" class="form-control pull-right" >
+                                        </div>
+
+                                        @if ($errors->has('desc2'))
+                                            <span class="text-red" role="alert">
+                                                <strong>{{ $errors->first('desc2') }}</strong>
+                                            </span>
+                                        @endif
+                                        <!-- /.input group -->
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Description 3 :</label>
+
+                                        <div class="input-group ">
+                                            <div class="input-group-addon">
+                                            <i class="fa fa-sticky-note-o"></i>
+                                            </div>
+                                            <input type="text" name="desc3" value="{{ $productSelected->desc3 }}" maxlength="50" class="form-control pull-right" >
+                                        </div>
+
+                                        @if ($errors->has('desc3'))
+                                            <span class="text-red" role="alert">
+                                                <strong>{{ $errors->first('desc3') }}</strong>
+                                            </span>
+                                        @endif
+                                        <!-- /.input group -->
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Description 4 :</label>
+
+                                        <div class="input-group ">
+                                            <div class="input-group-addon">
+                                            <i class="fa fa-sticky-note-o"></i>
+                                            </div>
+                                            <input type="text" name="desc4" value="{{ $productSelected->desc4 }}" maxlength="50" class="form-control pull-right" >
+                                        </div>
+
+                                        @if ($errors->has('desc4'))
+                                            <span class="text-red" role="alert">
+                                                <strong>{{ $errors->first('desc4') }}</strong>
+                                            </span>
+                                        @endif
+                                        <!-- /.input group -->
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Description 5 :</label>
+
+                                        <div class="input-group ">
+                                            <div class="input-group-addon">
+                                            <i class="fa fa-sticky-note-o"></i>
+                                            </div>
+                                            <input type="text" name="desc5" value="{{ $productSelected->desc5 }}" maxlength="50" class="form-control pull-right" >
+                                        </div>
+
+                                        @if ($errors->has('desc5'))
+                                            <span class="text-red" role="alert">
+                                                <strong>{{ $errors->first('desc5') }}</strong>
+                                            </span>
+                                        @endif
+                                        <!-- /.input group -->
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Description 6 :</label>
+
+                                        <div class="input-group ">
+                                            <div class="input-group-addon">
+                                            <i class="fa fa-sticky-note-o"></i>
+                                            </div>
+                                            <input type="text" name="desc6" value="{{ $productSelected->desc6 }}" maxlength="50" class="form-control pull-right" >
+                                        </div>
+
+                                        @if ($errors->has('desc6'))
+                                            <span class="text-red" role="alert">
+                                                <strong>{{ $errors->first('desc6') }}</strong>
+                                            </span>
+                                        @endif
+                                        <!-- /.input group -->
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Remark :</label>
+
+                                        <div class="input-group ">
+                                            <div class="input-group-addon">
+                                            <i class="fa fa-sticky-note-o"></i>
+                                            </div>
+                                            <input type="text" name="remark" value="{{ $productSelected->remark }}" maxlength="100" class="form-control pull-right" >
                                         </div>
 
                                         @if ($errors->has('remark'))

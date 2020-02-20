@@ -59,13 +59,13 @@ class QuotationController extends Controller
             $request->remarkInPI = '';
         }
         if($request->shippingCostInPI == null){
-            $request->shippingCostInPI = '';
+            $request->shippingCostInPI = 0;
         }
         if($request->specialDiscount == null){
-            $request->specialDiscount = '';
+            $request->specialDiscount = 0;
         }
         if($request->depositAmountPercentOrValue == null){
-            $request->depositAmountPercentOrValue = '';
+            $request->depositAmountPercentOrValue = 0;
         }
 
         //check duplicate
@@ -101,7 +101,7 @@ class QuotationController extends Controller
                 $products   = $request->product_running_id;
                 $amounts    = $request->amount;
                 $discountPercentByProducts = $request->discountPercentByProduct;
-                $remarkByProducts    = trim($request->remarkByProduct);
+                $remarkByProducts    = $request->remarkByProduct;
 
                 $quotationMainToBeSave = new QuotationMain();
                 $quotationMainToBeSave->customer_running_id         = $request->customer_running_id;
@@ -222,13 +222,13 @@ class QuotationController extends Controller
             $request->remarkInPI = '';
         }
         if($request->shippingCostInPI == null){
-            $request->shippingCostInPI = '';
+            $request->shippingCostInPI = 0;
         }
         if($request->specialDiscount == null){
-            $request->specialDiscount = '';
+            $request->specialDiscount = 0;
         }
         if($request->depositAmountPercentOrValue == null){
-            $request->depositAmountPercentOrValue = '';
+            $request->depositAmountPercentOrValue = 0;
         }
 
         // dd($request->PI_number);
