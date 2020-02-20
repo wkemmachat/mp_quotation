@@ -36,9 +36,10 @@ class ProductCategoryController extends Controller
 
         // dd($id);
         $productCategorySelected = ProductCategory::findOrFail($id);
+        $main_categories = ProductCategory::where('parent_id',NULL)->get();
         // dd($userSelected);
         // $users = User::all();
-        return view('product_category.add_sub',  compact('productCategorySelected'));
+        return view('product_category.add_sub',  compact('productCategorySelected','main_categories'));
 
 
     }
@@ -73,10 +74,11 @@ class ProductCategoryController extends Controller
         $productCatToBeSave->save();
 
         $categories = ProductCategory::all();
+        $main_categories = ProductCategory::where('parent_id',NULL)->get();
 
         $message = "Successfully add data";
         Toastr::success($message, $title = "Successfully Action", $options = []);
-        return view('product_category.index',compact('categories'));
+        return view('product_category.index',compact('categories','main_categories'));
     }
 
 
@@ -135,9 +137,10 @@ class ProductCategoryController extends Controller
     {
         // dd($id);
         $productCategorySelected = ProductCategory::findOrFail($id);
+        $main_categories = ProductCategory::where('parent_id',NULL)->get();
         // dd($userSelected);
         // $users = User::all();
-        return view('product_category.edit',  compact('productCategorySelected'));
+        return view('product_category.edit',  compact('productCategorySelected','main_categories'));
     }
 
     /**
