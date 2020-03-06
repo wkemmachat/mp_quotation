@@ -323,6 +323,7 @@
                                     <th class="text-center">Remark</th>
                                     <th class="text-center">Name / ผู้ทำงาน</th>
                                     <th class="text-center">View/Edit</th>
+                                    <th class="text-center">Export</th>
                                 </tr>
 
                             </thead>
@@ -342,7 +343,9 @@
                                         <td class="text-center">
                                             <a href="{{ route('quotation.edit',$quotations[$i]->id) }}" class="btn  btn-warning">View/Edit<a>
                                         </td>
-
+                                        <td class="text-center">
+                                            <a href="{{ route('export',$quotations[$i]->PI_number) }}" class="btn  btn-info">Export<a>
+                                        </td>
                                     </tr>
                                 <?php
                                 }

@@ -24,6 +24,7 @@ Route::get('/test_blank', function () {
 });
 
 Auth::routes();
+Route::get('/export/{pi_number}', 'ExportController@Index')->name('export');
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 

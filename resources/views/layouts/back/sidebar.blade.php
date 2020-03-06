@@ -103,6 +103,12 @@
             </a>
         </li>  --}}
 
+        {{-- <li class="{{ Request::is('dashboard*') ? 'active' : '' }}">
+            <a href="{{route('export')}}">
+                <i class="fa fa-building-o"></i> <span>Export Quotation</span>
+            </a>
+        </li> --}}
+
         @can('isRoot')
         <li class="treeview {{ Request::is('user*') ? 'active' : '' }}">
             <a href="#">
