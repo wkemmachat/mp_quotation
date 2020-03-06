@@ -49,7 +49,8 @@ class ExportQuotation
             'FullName'=>'Miss Achara  Meesri',
             'Mobile'=>'+66 94 265 6451',
             'Email'=>'achara@officeintrend.com',
-            'Image'=>public_path('images\\Signature\\'.$userData->imageSignature)
+            'Image'=>public_path('images/Signature/'.$userData->imageSignature)
+            // 'Image'=>public_path('images\\Signature\\'.$userData->imageSignature)
         ];
 
         $termsAndconditionsData = (object)[
